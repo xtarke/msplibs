@@ -9,6 +9,11 @@
 #include <msp430.h>
 #include <lib/bits.h>
 
+
+#define LED_1   BIT0
+#define LED_2   BIT6
+#define BUTTON  BIT3
+
 /**
   * @brief  Configura hardware.
   * @param  Nenhum
@@ -18,12 +23,12 @@
 void hardware_init()
 {
     /* Acesso direto: P1.0 e P1.6 como saídas. Demais como entrada */
-    P1DIR |= BIT0 | BIT6;
+    P1DIR |= LED_1 | LED_2;
 
     /* Habilita resistor de pull up ou pull down */
-    P1REN |= BIT3;
+    P1REN |= BUTTON;
     /* Habilita resitor como pull up */
-    P1OUT |= BIT3;
+    P1OUT |= BUTTON;
 }
 
 /**
@@ -34,7 +39,7 @@ void hardware_init()
   */
 int main(void)
 {
-    /* Pára o watchdog timer
+    /* Para o watchdog timer
      * Necessário para código em depuração */
     WDTCTL = WDTPW | WDTHOLD;
 
@@ -44,11 +49,11 @@ int main(void)
     /* Laço infinito */
     while(1){
 
-        if (TST_BIT(P1IN, BIT3)) /* Equivalente a: if (P1IN & BIT3) */
-            CLR_BIT(P1OUT, BIT0 | BIT6);    /* Equivalente a P1OUT &= ~(BIT0 | BIT6); */
+        if (TST_BIT(P1IN, BUTTON)) /* Equivalente a: if (P1IN & BIT3) */
+            CLR_BIT(P1OUT, LED_1 | LED_2);    /* Equivalente a P1OUT &= ~(BIT0 | BIT6); */
         else
-            SET_BIT(P1OUT, BIT0 | BIT6);    /* Equivalente a: P1OUT |= BIT0 | BIT6; */
-        }
+            SET_BIT(P1OUT, LED_1 | LED_2);    /* Equivalente a: P1OUT |= BIT0 | BIT6; */
+    }
 
     return 0;
 }
