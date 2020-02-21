@@ -5,3 +5,9 @@ Notas, exemplos e bibliotecas para a disciplina de Microntroladores do Instituto
 ## Getting Started
 
 Clone o repositório e adicione os arquivos no seu projeto. Evite compilar mais de uma função main.
+
+## MSPDEBU
+
+```bash
+mspdebug -n rf2500 "prog ./Debug/msplibs.out"
+```
