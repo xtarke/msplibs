@@ -1,5 +1,5 @@
 /*
- * 01_main_simple_gpio.c
+ * 02_main_display_7_seg.c
  *
  *  Created on: Feb 7, 2020
  *      Author: Renan Augusto Starke
@@ -31,7 +31,7 @@ void main(void)
 		display_write(x);
 
 		/* Delay */
-		for(i=100000; i>0; i--);
+		for(i=10000; i>0; i--);
 
 		/* Incrementa e limita valor de x até 0x0f */
 		x++;
