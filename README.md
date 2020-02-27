@@ -11,3 +11,10 @@ Clone o repositório e adicione os arquivos no seu projeto. Evite compilar mais 
 ```bash
 mspdebug -n rf2500 "prog ./Debug/msplibs.out"
 ```
+
+[Launchpad Linux](https://hackaday.com/2010/08/11/how-to-launchpad-programming-with-linux/)
+
+
+https://blog.protoneer.co.nz/wp-content/uploads/2013/07/Arduino-CNC-Shield-Schematics.png
+
+https://dlbeer.co.nz/mspdebug/

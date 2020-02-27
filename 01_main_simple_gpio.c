@@ -7,8 +7,8 @@
  */
 
 #include <msp430.h>
-#include <lib/bits.h>
 
+#include "lib/bits.h"
 
 #define LED_1   BIT0
 #define LED_2   BIT6
