@@ -27,8 +27,8 @@ void display_init();
 
 /**
   * @brief  Escrevre no display de 7 segmentos.
-  * @param  data: valor sem decimal sem convers„o. Dados
-  *             s„o convertidos internamente.
+  * @param  data: valor sem decimal sem convers√£o. Dados
+  *             s√£o convertidos internamente.
   *
   * @retval Nenhum.
   */
