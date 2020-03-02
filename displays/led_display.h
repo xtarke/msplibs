@@ -14,8 +14,8 @@
 #define COM_ANODO
 //#define COM_CATODO
 
-#define DISPLAY_PORT_DIR P1DIR
-#define DISPLAY_PORT_OUT P1OUT
+#define PORT_DIR P1DIR
+#define PORT_OUT P1OUT
 
 /**
   * @brief  Configura hardware.
