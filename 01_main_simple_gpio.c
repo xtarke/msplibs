@@ -43,6 +43,11 @@ int main(void)
      * Necessário para código em depuração */
     WDTCTL = WDTPW | WDTHOLD;
 
+#if defined (__MSP430FR2355__)
+    /* Disable the GPIO power-on default high-impedance mode */
+    PM5CTL0 &= ~LOCKLPM5;
+#endif
+
     /* Incializa o hardware */
     hardware_init();
 
