@@ -19,7 +19,11 @@ void main(){
 
     /* Configuração de hardware */
     WDTCTL = WDTPW | WDTHOLD;
-    PM5CTL0 &= ~LOCKLPM5;                   // Disable the GPIO power-on default high-impedance mode  (para o FR2355)
+
+#if defined (__MSP430FR2355__)
+    /* Disable the GPIO power-on default high-impedance mode */
+    PM5CTL0 &= ~LOCKLPM5;
+#endif
 
     /* Inicializa hardare: veja lcd.h para
      * configurar pinos */
