@@ -16,4 +16,20 @@
 #define PORT_DIR(...) PORT_DIR_SUB(__VA_ARGS__)
 #define PORT_DIR_SUB(port) (port##DIR)
 
+/* Convert Px to PxREN */
+#define PORT_REN(...) PORT_REN_SUB(__VA_ARGS__)
+#define PORT_REN_SUB(port) (port##REN)
+
+/* Convert Px to PxIE */
+#define PORT_IE(...) PORT_IE_SUB(__VA_ARGS__)
+#define PORT_IE_SUB(port) (port##IE)
+
+/* Convert Px to PxIES */
+#define PORT_IES(...) PORT_IES_SUB(__VA_ARGS__)
+#define PORT_IES_SUB(port) (port##IES)
+
+/* Convert Px to PxIFG */
+#define PORT_IFG(...) PORT_IFG_SUB(__VA_ARGS__)
+#define PORT_IFG_SUB(port) (port##IFG)
+
 #endif /* LIB_GPIO_H_ */

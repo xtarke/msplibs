@@ -47,6 +47,8 @@ void main(){
     /* Habilita IRQs e desliga CPU */
     __bis_SR_register(LPM4_bits | GIE);
 
+    __bis_SR_register(GIE);
+
 }
 
 

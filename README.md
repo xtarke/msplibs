@@ -6,7 +6,13 @@ Notas, exemplos e bibliotecas para a disciplina de Microntroladores do Instituto
 
 Clone o repositório e adicione os arquivos no seu projeto. Evite compilar mais de uma função main.
 
-## MSPDEBU
+## Circuito para LCD e IRQ com MSP430G2553
+
+
+![Proteus e IRQ externo](./figuras/display_irq.png)
+
+
+## Gravação com MSPDEBUG
 
 ```bash
 mspdebug -n rf2500 "prog ./Debug/msplibs.out"
