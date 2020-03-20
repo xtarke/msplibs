@@ -22,8 +22,8 @@
 #define DATA_NIBBLE 0
 
 /* Portas */
-#define LCD_DATA_PORT P1
-#define LCD_CTRL_PORT P2
+#define LCD_DATA_PORT P2
+#define LCD_CTRL_PORT P1
 
 /* Pinos de controle */
 #define E_PIN  BIT1
