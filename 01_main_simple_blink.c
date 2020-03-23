@@ -2,7 +2,8 @@
  * 01_main_simple_blink.c
  *
  *  Created on: Feb 17, 2020
- *      Author: xtarke
+ *      Author: Renan Augusto Starke
+ *      Instituto Federal de Santa Catarina
  */
 
 #include <msp430.h>
