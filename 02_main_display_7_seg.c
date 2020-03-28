@@ -26,20 +26,20 @@ void main(void)
 #endif
 
     volatile uint16_t i;
-	uint8_t x = 0;
+    uint8_t x = 0;
 
-	/* Inicializa displays */
-	display_init();
+    /* Inicializa displays */
+    display_init();
 
-	while(1)
-	{
-		display_write(x);
+    while(1)
+    {
+        display_write(x);
 
-		/* Delay */
-		for(i=10000; i>0; i--);
+        /* Delay */
+        for(i=10000; i>0; i--);
 
-		/* Incrementa e limita valor de x até 0x0f */
-		x++;
-		x = x & 0xf;
-	}
+        /* Incrementa e limita valor de x até 0x0f */
+        x++;
+        x = x & 0xf;
+    }
 }
