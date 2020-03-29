@@ -10,7 +10,7 @@ Clone o repositório e adicione os arquivos no seu projeto. Evite compilar mais 
 
 
 - [Hardware LCD e IRQ externo](./figuras/display_irq.png)
-- [Hardware diplays de 7 segmentos e WDT](./figuras/wdt_disp.svg)
+- [Hardware diplays de 7 segmentos e WDT](./figuras/wdt_disp.png)
 
 
 ## Gravação com MSPDEBUG
