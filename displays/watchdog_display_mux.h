@@ -4,6 +4,11 @@
  *  Created on: Mar 27, 2020
  *      Author: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
+ *
+ *
+ *      Exemplo para utilizar display de 7 segmentos
+ *      multiplexados. SOftware codificado para
+ *      4 displays.
  */
 
 #ifndef DISPLAY_LEDDISPLAY_H_
@@ -34,6 +39,6 @@ void watchdog_display_mux_init();
   *
   * @retval Nenhum.
   */
-void watchdog_display_mux_write(uint16_t data);
+void inline watchdog_display_mux_write(uint16_t data);
 
 #endif /* DISPLAY_LEDDISPLAY_H_ */

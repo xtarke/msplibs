@@ -29,23 +29,23 @@
 
 volatile uint16_t i = 0;
 
-#define BUTTON_0  BIT0
+#define PULSES  BIT0
 
 void config_ext_irq(){
     /* Pull up/down */
-    P2REN = BUTTON_0;
+    P2REN = PULSES;
 
     /* Pull up */
-    P2OUT = BUTTON_0;
+    P2OUT = PULSES;
 
     /* Habilitação da IRQ apenas botão */
-    P2IE =  BUTTON_0;
+    P2IE =  PULSES;
 
     /* Transição de nível alto para baixo */
-    P2IES = BUTTON_0;
+    P2IES = PULSES;
 
     /* Limpa alguma IRQ pendente */
-    P2IFG &= ~BUTTON_0;
+    P2IFG &= ~PULSES;
 }
 
 
@@ -109,6 +109,6 @@ void __attribute__ ((interrupt(PORT1_VECTOR))) Port_2 (void)
     watchdog_display_mux_write(i++);
 
     /* Limpa sinal de IRQ do botão 0 */
-    P2IFG &= ~BUTTON;
+    P2IFG &= ~PULSES;
 }
 
