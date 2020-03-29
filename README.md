@@ -6,10 +6,11 @@ Notas, exemplos e bibliotecas para a disciplina de Microntroladores do Instituto
 
 Clone o repositório e adicione os arquivos no seu projeto. Evite compilar mais de uma função main.
 
-## Circuito para LCD e IRQ com MSP430G2553
+## Circuitos
 
 
-![Proteus e IRQ externo](./figuras/display_irq.png)
+- [Hardware LCD e IRQ externo](./figuras/display_irq.png)
+- [Hardware diplays de 7 segmentos e WDT](./figuras/wdt_disp.svg)
 
 
 ## Gravação com MSPDEBUG

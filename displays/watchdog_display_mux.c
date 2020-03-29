@@ -56,7 +56,7 @@ void watchdog_display_mux_init(){
 }
 
 
-void watchdog_display_mux_write(uint16_t data){
+void inline watchdog_display_mux_write(uint16_t data){
     my_displays.current_data = data;
 }
 
