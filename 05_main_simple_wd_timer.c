@@ -64,7 +64,7 @@ void config_wd_as_timer(){
      * WDTIS1+WDTIS0 -> Clock / 8192
      *
      */
-    WDTCTL = WDT_ADLY_250;
+    WDTCTL = WDT_ADLY_16;
     /* Ativa IRQ do Watchdog */
     IE1 |= WDTIE;
 }
@@ -76,8 +76,9 @@ int main(void)
     WDTCTL = WDTPW | WDTHOLD;
 
     /* Configurações de hardware */
+    // init_clock_system();
+
     config_wd_as_timer();
-    init_clock_system();
 
     PORT_DIR(LED_PORT) = BIT0;
 
