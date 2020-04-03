@@ -2,7 +2,8 @@
  * gpio.h : GPIO general purpose macros
  *
  *  Created on: Mar 2, 2020
- *      Author: xtarke
+ *      Author: Renan Augusto Starke
+ *      Instituto Federal de Santa Catarina
  */
 
 #ifndef LIB_GPIO_H_
@@ -11,6 +12,10 @@
 /* Convert Px to PxOUT */
 #define PORT_OUT(...) PORT_OUT_SUB(__VA_ARGS__)
 #define PORT_OUT_SUB(port) (port##OUT)
+
+/* Convert Px to PxIN */
+#define PORT_IN(...) PORT_IN_SUB(__VA_ARGS__)
+#define PORT_IN_SUB(port) (port##IN)
 
 /* Convert Px to PxDIR */
 #define PORT_DIR(...) PORT_DIR_SUB(__VA_ARGS__)
