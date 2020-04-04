@@ -1,21 +1,24 @@
 /*
- * 05_main_simple_timer_a.c
+ * 05_main_couting_deboucer.c
  *
  *  Created on: Mar 27, 2020
  *      Author: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  *
- *      Exemplo de configuração Timer Tipo A número 1
- *
+ *      Exemplo de debouce de botão por pooling.
+ *      Faz a verificação de botão periodicamente utilizando
+ *      o comparador 0 do Timer A0
+ *      Período do pooling deve ser maior que o tempo de
+ *      instabilidade da chave.
  *
  *       .
- *      /|\                  +    <-- Overflow (TA0IV_TAIFG - TIMER0_A1_VECTOR)   (2^16)
+ *      /|\                  +
  *       |                 +
  *       |               +
- *       |             +  <-- Comparador 0 (TACCR0  -> TIMER0_A0_VECTOR)
+ *       |             +  <-- Comparador 0 (TACCR0  -> TIMER0_A0_VECTOR) - Debouncer do botão
  *       |           +
  *       |         +
- *       |       + <--- Comparadores 1 e 2 (TACCR1 e TACCR2 - TIMER0_A1_VECTOR)
+ *       |       +
  *       |     +
  *       |   +
  *       | +
@@ -36,11 +39,16 @@
 
 /* Project includes */
 #include "lib/gpio.h"
+#include "lib/bits.h"
+#include "displays/simple_display_mux.h"
 
-#define LED_1 BIT0
-#define LED_2 BIT6
+#define BUTTON_PORT P1
+#define BUTTON BIT3
 
 #define LED_PORT P1
+#define LED BIT0
+
+#define BUTTON_SAMPLES (12)
 
 /**
   * @brief  Configura sistema de clock para usar o Digitally Controlled Oscillator (DCO).
@@ -74,95 +82,91 @@ void init_clock_system(){
   *
   * @retval none
   */
-void config_timerA_1(){
+void config_timerA_0(){
     /* Timer A0:
      *
      *
      * TASSEL_2 -> Clock de SMCLK.
      * MC_2 -> Contagem crescente.
-     * TAIE -> Habilitação de IRQ.
      * ID_3 -> Prescaler = /8
      */
-    TA1CTL = TASSEL_2 | MC_2 | ID_3 | TAIE;
+    TA0CTL = TASSEL_2 | MC_2 | ID_1;
 
     /* IRQ por comparação entre contagem e comparador 0 */
-    TA1CCTL0 = CCIE;
+    TA0CCTL0 = CCIE;
     /* Valor de comparação é 50000 */
-    TA1CCR1 = 20000;
+    TA0CCR0 = 20000;
 }
 
 
 int main(void)
 {
+    volatile uint16_t my_data = 0;
+
     /* Desliga watchdog imediatamente */
     WDTCTL = WDTPW | WDTHOLD;
 
+    /* Configura botões */
+    /* BUTTON_PORT totalmente como entrada */
+    PORT_DIR(BUTTON_PORT) = LED | BIT6;
+    /* Resistores de pull up */
+    PORT_REN(BUTTON_PORT) = BUTTON;
+    PORT_OUT(BUTTON_PORT) = BUTTON;
+
     /* Configurações de hardware */
-    config_timerA_1();
+    config_timerA_0();
     init_clock_system();
 
-    PORT_DIR(LED_PORT) = LED_1 | LED_2;
-    PORT_OUT(LED_PORT) = 0;
+    /* Inicializa displays */
 
     /* Entra em modo de economia de energia com IRQs habilitadas */
     __bis_SR_register(LPM0_bits + GIE);
+
+    while (1){
+
+
+
+        /* Desligar CPU novamente */
+       __bis_SR_register(LPM0_bits);
+    }
 }
 
 
-
-
-/* ISR0 do Timer A: executado no evento de comparação  comparador 0 (TACCR0) */
+/* ISR0 do Timer A: executado no evento de comparação  comparador 0 (TACCR0)
+ *
+ * Utilizado para o debouncer por pooling: faz a verificação de botão
+ * periodicamente. Período do pooling deve ser maior que o tempo de
+ * instabilidade da chave.
+ *
+ * */
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-#pragma vector=TIMER1_A0_VECTOR
-__interrupt void TIMER1_A0_ISR (void)
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void TIMER0_A0_ISR(void)
 #elif defined(__GNUC__)
 void __attribute__ ((interrupt(TIMER0_A0_VECTOR))) Timer_A (void)
 #else
 #error Compiler not supported!
 #endif
 {
-    PORT_OUT(LED_PORT) ^= LED_1;
-}
+    static uint8_t counter = BUTTON_SAMPLES;
 
+    /* Debug: Piscar quando executar a ISR */
+    CPL_BIT(P1OUT, BIT6);
 
+    /* Se botão apertado: borda de descida */
+    if (!TST_BIT(PORT_IN(BUTTON_PORT), BUTTON))  {
+        /* Se contagem = 0, debounce terminado */
+        if (!(--counter)) {
 
-/* ISR1 do Timer A: executado toda a vez que o temporizador estoura, evento do comparador 1 ou evento do comparador 2 */
-#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-#pragma vector = TIMER1_A1_VECTOR
-__interrupt void TIMER1_A1_ISR (void)
-#elif defined(__GNUC__)
-void __attribute__ ((interrupt(TIMER0_A1_VECTOR))) TIMER0_A1_ISR (void)
-#else
-#error Compiler not supported!
-#endif
-{
-  switch(__even_in_range(TA1IV,0x0A))
-  {
-      /* Vector  0:  No interrupt */
-      case  TA1IV_NONE:
-          break;
+            /* Colocar aqui código da aplicação referente ao botão */
 
-      /* Vector  2:  TACCR1 CCIFG -> Comparação 1*/
-      case  TA1IV_TACCR1:
+            /* Acorda função main
+            __bic_SR_register_on_exit(LPM0_bits); */
 
-          break;
-      /* Vector  4:  TACCR2 CCIFG -> Comparação 2*/
-      case TA1IV_TACCR2:
-          break;
+            CPL_BIT(PORT_OUT(LED_PORT), LED);
 
-      /* Vector  6:  Reserved  */
-      case TA1IV_6:
-          break;
-      /* Vector  8:  Reserved  */
-      case TA1IV_8:
-          break;
-
-      /* Vector 10:  TAIFG -> Overflow do timer 0*/
-      case TA1IV_TAIFG:
-          PORT_OUT(LED_PORT) ^= LED_2;
-
-          break;
-      default:
-          break;
-  }
+        }
+    }
+    else
+        counter = BUTTON_SAMPLES;
 }
