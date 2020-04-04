@@ -83,7 +83,7 @@ void config_timerA_0(){
      * TAIE -> Habilitação de IRQ.
      * ID_3 -> Prescaler = /8
      */
-    TA0CTL = TASSEL_2 | MC_2 | ID_3  | TAIE;
+    TA0CTL = TASSEL_2 | MC_2 | ID_3;//  | TAIE;
 
     /* IRQ por comparação entre contagem e comparador 0 */
     TA0CCTL0 = CCIE;
@@ -111,7 +111,7 @@ int main(void)
 
 
 
-/* ISR0 do Timer A: executado no eventro de comparação  comparador 0 (TACCR0) */
+/* ISR0 do Timer A: executado no evento de comparação  comparador 0 (TACCR0) */
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
 #pragma vector=TIMER0_A0_VECTOR
 __interrupt void TIMER0_A0_ISR (void)
