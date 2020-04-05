@@ -83,12 +83,18 @@ void config_timerA_0(){
      * TAIE -> Habilitação de IRQ.
      * ID_3 -> Prescaler = /8
      */
-    TA0CTL = TASSEL_2 | MC_2 | ID_3;//  | TAIE;
+    TA0CTL = TASSEL_2 | MC_2 | ID_3 | TAIE;
 
     /* IRQ por comparação entre contagem e comparador 0 */
     TA0CCTL0 = CCIE;
     /* Valor de comparação é 50000 */
     TA0CCR0 = 20000;
+
+    /* TA0CCTL1 = CCIE;
+    TA0CCR1 = 200;
+
+    TA0CCTL2 = CCIE;
+    TA0CCR1 = 500; */
 }
 
 
