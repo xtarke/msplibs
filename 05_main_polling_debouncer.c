@@ -175,11 +175,13 @@ void __attribute__ ((interrupt(TIMER0_A0_VECTOR))) Timer_A (void)
       buttons.b0 = !TST_BIT(PORT_IN(BUTTON_PORT), BUTTON_0);
     */
 
+    /* Debug: Pisca P1.6 quando detectado algum botão */
+  CPL_BIT(P1OUT, BIT6);
+
+
     /* Se algum botão foi apertado acorda o main */
     if (buttons.all_bits != 0x07){
-        /* Debug: Pisca P1.6 quando detectado algum botão */
-        CPL_BIT(P1OUT, BIT6);
-        /* Acorda função main */
+               /* Acorda função main */
         __bic_SR_register_on_exit(LPM0_bits);
     }
 }

@@ -100,7 +100,7 @@ void main(void)
 #pragma vector=PORT2_VECTOR
 __interrupt void Port_2(void)
 #elif defined(__GNUC__)
-void __attribute__ ((interrupt(PORT1_VECTOR))) Port_2 (void)
+void __attribute__ ((interrupt(PORT2_VECTOR))) Port_2 (void)
 #else
 #error Compiler not supported!
 #endif
