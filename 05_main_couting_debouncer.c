@@ -134,9 +134,8 @@ int main(void)
 
 /* ISR0 do Timer A: executado no evento de comparação  comparador 0 (TACCR0)
  *
- * Utilizado para o debouncer por pooling: faz a verificação de botão
- * periodicamente. Período do pooling deve ser maior que o tempo de
- * instabilidade da chave.
+ * Utilizado para o debouncer por amostragem: faz a verificação de botão
+ * periodicamente.
  *
  * */
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
