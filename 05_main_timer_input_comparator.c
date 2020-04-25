@@ -7,7 +7,7 @@
  *
  *      Exemplo de parcial de aplicação:
  *
- *      - Utiliza o evente de captura do Timer A para borda
+ *      - Utiliza o evento de captura do Timer A para borda
  *      de subida e descida de uma porta.
  *
  *
