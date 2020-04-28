@@ -19,6 +19,11 @@
 /* Tipos uint16_t, uint8_t, ... */
 #include <stdint.h>
 
+
+#ifndef __MSP430F2132__
+    #error "Example not validated with this device."
+#endif
+
 /* Pinos de hardware */
 #define SENSOR_PORT P2
 #define SENSOR_PIN BIT0
