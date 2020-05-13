@@ -1,9 +1,9 @@
 /*
- * 02_main_lcd.c
+ * main_relogio.c
  *
  *  Created on: Mar 2, 2020
  *      Author: Renan Augusto Starke
- *      Instituto Federal de Santa Catarina *
+ *      Instituto Federal de Santa Catarina
  */
 
 /* Includes de sistema */

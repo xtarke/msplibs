@@ -70,8 +70,8 @@ void config_timerA_1_as_pwm(){
     TA1CCTL1 = OUTMOD_2;
     TA1CCTL2 = OUTMOD_2;
 
-    TA1CCR1 = 256;
-    TA1CCR2 = 100;
+    TA1CCR1 = 400;
+    TA1CCR2 = 256;
 
     /*      .
     *      /|\                  +                < -Comparador 0: (máximo da contagem) -> período do PWM
