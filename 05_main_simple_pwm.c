@@ -62,6 +62,7 @@ void config_timerA_as_pwm(){
      * TA0CCR1 PWM duty cycle: TA0CCR1 / TA0CCR0 */
 
     TA0CCR0 = 512-1;
+
     TA0CCTL1 = OUTMOD_7;
     TA0CCR1 = 350;
 
