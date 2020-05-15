@@ -4,9 +4,7 @@
  *  Created on: May 13, 2020
  *      Author: Renan Augusto Starke
  *
- *
- *
- *
+ *      Um exemplo de implementação de FSM.
  *
  */
 

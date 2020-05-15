@@ -28,7 +28,7 @@ void config_timerA_as_pwm();
 
 void control_init(){
 
-    /* Configura botões */
+   /* Configura botões */
    /* BUTTON_PORT totalmente como entrada */
    PORT_DIR(BUTTON_PORT) = LED | BIT6;
    /* Resistores de pull up */
@@ -85,7 +85,7 @@ void config_timerA_as_pwm(){
      * OUTMOD_7: PWM output mode: 7 - PWM reset/set - CCR1 reset/set
      * TA0CCR1 PWM duty cycle: TA0CCR1 / TA0CCR0 */
 
-    /* t = 1us * 2000 = 20ms = 50Hz */
+    /* t = 1us * 20000 = 20ms = 50Hz */
     TA0CCR0 = 20000;
     TA0CCTL1 = OUTMOD_7;
 

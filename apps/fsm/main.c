@@ -61,7 +61,7 @@ void main(){
     PM5CTL0 &= ~LOCKLPM5;
 #endif
 
-    /* Systema de clock e applicação */
+    /* Sistema de clock e applicação */
     init_clock_system();
     control_init();
 
