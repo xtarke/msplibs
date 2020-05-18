@@ -72,7 +72,9 @@ void config_analog_comparator(){
      * CAON  : Comp. A enable
      * CAIE  : Comp. A Interrupt Enable
      *
+     * CACTL2: Comparator A Control 2
      * P2CA4 : Comp. A +Terminal Multiplexer
+     * CAF   : Comp. A Enable Output Filter
      *
      *
                     |+
@@ -85,7 +87,7 @@ void config_analog_comparator(){
     /* Liga comparador, seleciona entrada negativa */
     CACTL1 = CARSEL | CAREF1 | CAON | CAIE;
     /* Seleciona entrada positiva */
-    CACTL2 = P2CA4;
+    CACTL2 = P2CA4 | CAF;
 }
 
 
@@ -123,4 +125,8 @@ void __attribute__ ((interrupt(TIMER0_A1_VECTOR))) TIMER0_A1_ISR (void)
 #endif
 {
     CPL_BIT(PORT_OUT(LED_PORT), LED_PIN);
+
+    /* Limpa sinal de IRQ do comparador */
+    CACTL1 &= ~CAIFG
+;
 }
