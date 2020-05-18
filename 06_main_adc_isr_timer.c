@@ -1,13 +1,13 @@
 /*
  * 06_main_adc_isr.c
  *
- *  Created on: May 15, 2020
+ *  Created on: May 18, 2020
  *      Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  *
  *      Exemplo do conversor analógico digital.
  *      - Trigger do ADC por software.
- *      - Temporização em função do main.
+ *      - Temporização por um timer.
  *
  *                  MSP430G2553
  *               -----------------
@@ -70,7 +70,6 @@ void init_clock_system(){
   * @retval none
   */
 void init_adc(){
-
     /* ADC10CTL0:
      * ADC10SHT_2:  16 x ADC10CLKs
      * ADC10ON   :  ADC10 On/Enable
@@ -78,12 +77,46 @@ void init_adc(){
      */
     ADC10CTL0 = ADC10SHT_2 + ADC10ON + ADC10IE;
 
-    /* Input A2 */
-    ADC10CTL1 = INCH_2;
+    /* ADC10CTL1:
+     * INCH_2: Selects Channel 2
+     * SHS_2 : TA3 OUT0  (Trigger ligado ao comparador 0 do TA
+     * CONSEQ_2: Repeat single channel
+     */
+    ADC10CTL1 = INCH_2 | SHS_2 | CONSEQ_2;
 
     /*  P1.2 ADC option select */
     ADC10AE0 |= BIT2;
+
+    /* ADC10 Enable Conversion */
+    ADC10CTL0 |= ENC;
 }
+
+/**
+  * @brief  Configura temporizador A.
+  *
+  * @param  none
+  *
+  * @retval none
+  */
+void config_timerA_0(){
+    /* Timer A0:
+     *
+     *
+     * TASSEL_2 -> Clock de SMCLK.
+     * MC_1 -> Contagem crescente até CCR0.
+     * ID_3 -> Prescaler = /8
+     */
+    TA0CTL = TASSEL_2 | MC_1 | ID_3;
+
+    /* Valor de comparação, período do timer */
+    TA0CCR0 = 40000;
+    /* Habilita saída do temporizador
+     * Deve ser colocado para criar o trigger do ADC
+     */
+    TA0CCTL0 = OUTMOD_3;
+
+}
+
 
 int main (void)
 {
@@ -95,9 +128,11 @@ int main (void)
     /* Sistema de clock */
     init_clock_system();
     init_adc();
+    config_timerA_0();
 
     /* Pino de debpuração */
     SET_BIT(P1DIR,BIT6);
+    SET_BIT(P1DIR,BIT7);
 
     /* Inicializa hardare: veja lcd.h para
      * configurar pinos */
@@ -107,14 +142,8 @@ int main (void)
     lcd_send_data(LCD_LINE_1, LCD_CMD);
     lcd_write_string("MSP430");
 
-    _delay_cycles(100000);
-
     while (1){
-        /* Início da conversão: trigger por software */
-        ADC10CTL0 |= ENC + ADC10SC;
-
-        /* Desliga CPU até ADC terminar
-         * Nesse exemplo o LCD é muito mais lento */
+        /* Desliga CPU até ADC terminar */
         __bis_SR_register(CPUOFF + GIE);
 
         /* Remove caracteres antigos do LCD */
@@ -146,9 +175,8 @@ void __attribute__ ((interrupt(ADC10_VECTOR))) ADC10_ISR (void)
 {
     adc_val = ADC10MEM;
 
-    /* Complementa P1.6 para ver valocidade do ADC */
+    /* Complementa P1.6 para ver velocidade do ADC */
     CPL_BIT(P1OUT,BIT6);
 
     __bic_SR_register_on_exit(CPUOFF);
 }
-

@@ -87,7 +87,6 @@ void config_analog_comparator(){
 }
 
 
-
 int main (void)
 {
     WDTCTL = WDTPW + WDTHOLD;
