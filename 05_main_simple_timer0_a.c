@@ -77,7 +77,6 @@ void init_clock_system(){
 void config_timerA_0(){
     /* Timer A0:
      *
-     *
      * TASSEL_2 -> Clock de SMCLK.
      * MC_2 -> Contagem crescente.
      * TAIE -> Habilitação de IRQ.
