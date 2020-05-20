@@ -134,8 +134,8 @@ int main(void)
          */
         ADC10SA = (unsigned int)adc_data;
 
-        /* Habilitação e trigger */
-        ADC10CTL0 |= ENC + ADC10SC;
+        /* Habilitação do AD novamente */
+        ADC10CTL0 |= ENC;
         __bis_SR_register(CPUOFF + GIE);
 
         /* Espaço para debugger */
