@@ -38,7 +38,7 @@ void init_pga(){
      * PMUXEN: SAC Positive input MUX control
      * PSEL_0: External source selected
      * NSEL_1: PGA source selected
-     * OAPM  : SAC OA power mode selection
+     * OAPM  : SAC OA power mode selection: select low speed and low power mode
      *
      * SAC0PGA: SAC PGA Control Register
      * GAIN0 :  SAC PGA Gain configuration: gain=1
@@ -108,9 +108,7 @@ void init_adc12(){
     ADCIE |= ADCIE0;
 }
 
-
-
-unsigned int ADC_Result;
+uint16_t ADC_Result;
 
 void main(void)
 {

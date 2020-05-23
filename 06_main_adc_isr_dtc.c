@@ -124,7 +124,7 @@ int main(void)
     }
 }
 
-    /* ISR do ADC10. Executada quando as conversões terminarem */
+/* ISR do ADC10. Executada quando as conversões terminarem */
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
 #pragma vector=ADC10_VECTOR
 __interrupt void ADC10_ISR (void)

@@ -15,7 +15,7 @@ int main(void)
 {
     int i;
 
-    /* Configuração de hardware */
+    /* Desabilita Watch dog */
     WDTCTL = WDTPW | WDTHOLD;
 
 #if defined (__MSP430FR2355__)
