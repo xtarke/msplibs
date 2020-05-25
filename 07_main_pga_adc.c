@@ -19,6 +19,7 @@
 
 
 #include <msp430.h>
+#include <stdint.h>
 
 
 #ifndef __MSP430FR2355__
@@ -41,7 +42,7 @@ void init_pga(){
      * OAPM  : SAC OA power mode selection: select low speed and low power mode
      *
      * SAC0PGA: SAC PGA Control Register
-     * GAIN0 :  SAC PGA Gain configuration: gain=1
+     * GAIN0 :  SAC PGA Gain configuration: gain=1 or =2
      * MSEL_2: Non-inverting mode
      *
      *
@@ -54,7 +55,10 @@ void init_pga(){
 
     SAC0OA = NMUXEN + PMUXEN + PSEL_0 + NSEL_1;
     SAC0OA |= OAPM;
+    /* Gain = 2 */
     SAC0PGA = GAIN0 + MSEL_2;
+    /* Gain = 1 */
+    //SAC0PGA = MSEL_2;
     SAC0OA |= SACEN + OAEN;
 
     /* Configuração da função alternativa dos pinos

@@ -140,7 +140,7 @@ int main(void)
         dac_data &= 0xFFF;
         SAC0DAT = dac_data;
 
-        _delay_cycles(100000);
+        _delay_cycles(200);
     }
 }
 
