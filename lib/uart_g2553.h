@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 
-#define CLOCK_1MHz
+#define CLOCK_16MHz
 
 void init_uart();
 void uart_send_package(uint8_t *data, uint8_t size);

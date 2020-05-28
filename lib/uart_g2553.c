@@ -5,6 +5,9 @@
  *      Author: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  *
+ *
+ *      - Biblioteca de comunicação UART.
+ *
  *               MSP430G2553
  *            -----------------
  *        /|\|              XIN|-
@@ -18,11 +21,11 @@
  */
 
 /* System includes */
-#include <lib/uart_g2553.h>
 #include <msp430.h>
 #include <stdint.h>
 
 /* Project includes */
+#include <lib/uart_g2553.h>
 
 #ifndef __MSP430G2553__
 #error "Library no supported/validated in this device."
@@ -64,8 +67,14 @@ void init_uart(){
     /* Configuração de clock: ver página 424 do MSP430G2553 Family Guide */
     UCA0BR0 = 104;
     UCA0BR1 = 0;
+#elif defined CLOCK_16MHz
+    /* Fonte de clock da UART: SMCLK */
+    UCA0CTL1 |= UCSSEL_2;
+    /* Configuração de clock: ver página 424 do MSP430G2553 Family Guide */
+    UCA0BR0 = 0x82;
+    UCA0BR1 = 0x06;
 #else
-    #error "Clock system defined for UART support"
+    #error "Clock system not defined for UART support"
 #endif
 
     /* Tipo de modulação e reset do hardware USCI */
@@ -96,9 +105,6 @@ void uart_send_data_pooling(uint8_t byte){
     /* Copia dado para o buffer de hardware */
     UCA0TXBUF = byte;
 }
-
-
-
 
 /**
   * @brief  Envia um pacote para o USCI.

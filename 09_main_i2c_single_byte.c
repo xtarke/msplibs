@@ -1,46 +1,37 @@
 /*
- * 08_main_uart.c
+ * 09_main_i2c_scan.c
  *
- *  Created on: May 25, 2020
+ *  Created on: May 27, 2020
  *      Author: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  *
+ *      - Escreve apenas um byte no barramento I2C.
+ *      - Exemplo útil para expansor de IO PCF8574T.
+ *                          .   .
+ *                         /|\ /|\
+ *               CI_xyz    10k 10k     MSP430G2xx3
+ *              -------     |   |   -------------------
+ *             |    SDA|<  -|---+->|P1.7/UCB0SDA       |-
+ *             |       |    |      |                   |
+ *             |       |    |      |                   |
+ *             |       |    |      |                   |
+ *             |    SCL|<----+-----|P1.6/UCB0SCL       |
+ *              -------            |                   |
  *
- *      - Exemplo de recepção e transmissão da USAR
- *      - CPU é desligado até o recebimento dos dados.
- *      - Uma mensagem de ACK é enviado quando um pacote
- *      é recebido.
- *
- *      - Clock da CPU é 1MHZ definido e uart.h  devido a
- *      configuração do baudrate.
- *
- *      - VEJA uart.c/.h
- *
- *               MSP430G2553
- *            -----------------
- *        /|\|              XIN|-
- *         | |                 |
- *         --|RST          XOUT|-
- *           |                 |
- *           |    P1.2/UCA0TXD | --> TX
- *           |                 |
- *           |    P1.1/UCA0RXD | <-- RX
- *           |                 |
  */
 
-
 /* System includes */
-#include <lib/uart_g2553.h>
 #include <msp430.h>
 #include <stdint.h>
 
 /* Project includes */
+#include "lib/i2c_master_g2553.h"
 #include "lib/bits.h"
 
-#ifndef __MSP430G2553__
-#error "Clock system not supported for this device"
-#endif
-
+/* Define endereço de 7-bits I2C
+ * 0x27 é o endereço do PCF8574T -- NXP
+ */
+#define DEVICE_I2C_ADDR 0x27
 
 /**
   * @brief  Configura sistema de clock para usar o Digitally Controlled Oscillator (DCO).
@@ -95,33 +86,40 @@ void init_clock_system(){
 }
 
 
-int main(){
-    const char message[] = "ACK";
-    const char message_bin_data[] = { 65, 63, 87, 87};
 
-    char my_data[8];
+
+int main(void) {
+
+    uint8_t i=0;
+    i2c_mode i2c_status = IDLE_MODE;
 
     /* Desliga Watchdog */
-    WDTCTL = WDTPW + WDTHOLD;
+    WDTCTL = WDTPW | WDTHOLD;
 
-    /* Inicializa hardware */
     init_clock_system();
-    init_uart();
+    init_i2c_master_mode();
 
-    /* Led de depuração */
+    /* Debug LED */
     P1DIR |= BIT0;
+    CLR_BIT(P1OUT,BIT0);
 
-    while (1){
-        /* Configura o recebimento de um pacote de 4 bytes */
-        uart_receive_package((uint8_t *)my_data, 4);
+    for (i=0; i < 8; i++){
+        i2c_status = i2c_write_single_byte(0x27, 0xff);
+       _delay_cycles(1000000);
 
-        /* Desliga a CPU enquanto pacote não chega */
-        __bis_SR_register(CPUOFF | GIE);
+       if (i2c_status == NACK_MODE)
+           SET_BIT(P1OUT,BIT0);
 
-        /* Envia resposta */
-        uart_send_package((uint8_t *)message,sizeof(message));
+       i2c_status = i2c_write_single_byte(0x27, 0x00);
 
-        /* Pisca LED para sinalizar que dados chegaram */
-        CPL_BIT(P1OUT,BIT0);
+       if (i2c_status == NACK_MODE)
+            SET_BIT(P1OUT,BIT0);
+
+       _delay_cycles(1000000);
     }
+
+    __bis_SR_register(LPM0_bits + GIE);
+    return 0;
 }
+
+
