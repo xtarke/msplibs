@@ -131,7 +131,7 @@ i2c_mode i2c_master_read_reg(uint8_t dev_addr, uint8_t reg_addr, uint8_t count, 
   * @retval i2c_mode: possíveis erros de transmissão.
   */
 i2c_mode i2c_write_single_byte(uint8_t dev_addr, uint8_t byte){
-    return i2c_master_read_reg(dev_addr, byte, 0, NULL);
+    return i2c_master_write_reg(dev_addr, byte, 0, NULL);
 }
 
 

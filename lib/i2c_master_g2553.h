@@ -31,8 +31,6 @@ i2c_mode i2c_master_write_reg(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_d
 i2c_mode i2c_master_read_reg(uint8_t dev_addr, uint8_t reg_addr, uint8_t count, uint8_t *data);
 
 
-
-
 void CopyArray(uint8_t *source, uint8_t *dest, uint8_t count);
 
 
