@@ -21,4 +21,9 @@ void spi_master_send_package(uint8_t *data, uint8_t size);
 void spi_master_receive_package(uint8_t *data, uint8_t size);
 void spi_master_send_receive_package(uint8_t *tx_data, uint8_t *rx_data, uint8_t size);
 
+void init_uart();
+void uart_send_package(uint8_t *data, uint8_t size);
+
+
+
 #endif /* LIB_UART_G2553_H_ */

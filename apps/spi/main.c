@@ -1,39 +1,43 @@
 /*
- * 10_main_spi.c
+ * 10_main_spi_ds3234.c
  *
- *  Created on: May 25, 2020
+ *  Created on: Jun 1, 2020
  *      Author: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  *
  *
- *      - Exemplo de recepção e transmissão SPI.
+ *      - Exemplo de recepção e transmissão SPI com o RTC DS2132
+ *      - Exemplo validado no Proteus
  *      - CPU é desligado até o recebimento dos dados.
+ *      - Dados recebidos do RTC são enviados pela UART.
+ *      - UART em 9600bps, 8bits de dados, sem paridade, 1 bit parada
  *
  *      - Clock da CPU é 16MHZ.
  *
- *
- *               MSP430G2553
+
+ *               MSP430F2132
  *            -----------------
  *        /|\|            P1.0 |-> Slave Chip Select (GPIO)
  *         | |                 |
- *         --|RST              |
+ *         --|RST         P3.4 |-> --> TX
  *           |                 |
- *           |            P1.6 |-> Data Out (UCB0SIMO)
+ *           |            P3.4 |-> Data Out (UCA0SIMO)
  *           |                 |
- *           |            P1.7 |<- Data In (UCABSOMI)
+ *           |            P3.5 |<- Data In (UCA0SOMI)
  *           |                 |
- *           |            P1.5 |-> Serial Clock Out (UCB0CLK)
+ *           |            P3.0 |-> Serial Clock Out (UCA0CLK)
+ */
 
 
 /* System includes */
-#include <lib/spi_master_g2553.h>
+#include "uart_spi_master_f2132.h"
 #include <msp430.h>
 #include <stdint.h>
 
 /* Project includes */
 #include "lib/bits.h"
 
-#ifndef __MSP430G2553__
+#ifndef __MSP430F2132__
 #error "Clock system not supported for this device"
 #endif
 
@@ -92,27 +96,29 @@ void init_clock_system(){
 
 
 int main(){
-    uint8_t rx_data[4] = {0,0,0,0};
-    uint8_t tx_data[4] = {0x07, 0x02, 0x03, 0x04};
+    uint8_t rtc_rx_data[8] = {0};
+    uint8_t rtc_tx_data[5] = {0x00, 0x01, 0x02, 0x03, 0x05};
 
     /* Desliga Watchdog */
     WDTCTL = WDTPW + WDTHOLD;
 
+    P1DIR |= BIT2;
+    SET_BIT(P1OUT,BIT2);
+
     /* Inicializa hardware */
     init_clock_system();
+    init_uart();
     init_spi_master_mode();
 
-    /* Envia um pacote de 4 bytes */
-    spi_master_send_package(tx_data, 4);
-    _delay_cycles(10);
-
-    /* Configura o recebimento de um pacote de 4 bytes */
-    spi_master_receive_package((uint8_t *)rx_data, 2);
-    _delay_cycles(20);
-
-    /* Envia e recebe um pacote de 4 bytes */
-    spi_master_send_receive_package(tx_data, rx_data, 4);
-
+    while(1){
+        /* Envia e recebe os pacotes na mesma chamada.
+         * SPI é Full Duplex */
+        spi_master_send_receive_package(rtc_tx_data, rtc_rx_data, 5);
+        /* Envia os dados recebidos pela UART */
+        uart_send_package(rtc_rx_data, 4);
+        _delay_cycles(10000000);
+        CPL_BIT(P1OUT,BIT2);
+    }
 
     /* Desliga a CPU  */
     __bis_SR_register(LPM0_bits + GIE);

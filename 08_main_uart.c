@@ -6,7 +6,7 @@
  *      Instituto Federal de Santa Catarina
  *
  *
- *      - Exemplo de recepção e transmissão da USAR
+ *      - Exemplo de recepção e transmissão da USART
  *      - CPU é desligado até o recebimento dos dados.
  *      - Uma mensagem de ACK é enviado quando um pacote
  *      é recebido.
