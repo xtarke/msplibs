@@ -1,5 +1,5 @@
 /*
- * 09_main_i2c_scan.c
+ * 09_main_single_byte_fr2355.c
  *
  *  Created on: May 27, 2020
  *      Author: Renan Augusto Starke
