@@ -1243,7 +1243,7 @@
   )
 
   (module Connector_PinSocket_2.54mm:PinSocket_2x13_P2.54mm_Vertical (layer F.Cu) (tedit 5A19A430) (tstamp 5EE14100)
-    (at 126.365 88.138)
+    (at 119.9642 87.5792)
     (descr "Through hole straight socket strip, 2x13, 2.54mm pitch, double cols (from Kicad 4.0.7), script generated")
     (tags "Through hole socket strip THT 2x13 2.54mm double row")
     (path /5EE18C86)
