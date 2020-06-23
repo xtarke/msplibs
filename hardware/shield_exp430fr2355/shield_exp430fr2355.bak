@@ -1,6 +1,5 @@
 EESchema Schematic File Version 4
 LIBS:shield_exp430fr2355-cache
-LIBS:shield_exp430g2-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -18,89 +17,78 @@ $EndDescr
 $Comp
 L power:GND #PWR0101
 U 1 1 5080AA99
-P 12550 2650
-F 0 "#PWR0101" H 12550 2400 50  0001 C CNN
-F 1 "GND" H 12550 2500 50  0000 C CNN
-F 2 "" H 12550 2650 50  0000 C CNN
-F 3 "" H 12550 2650 50  0000 C CNN
-	1    12550 2650
+P 10100 2550
+F 0 "#PWR0101" H 10100 2300 50  0001 C CNN
+F 1 "GND" H 10100 2400 50  0000 C CNN
+F 2 "" H 10100 2550 50  0000 C CNN
+F 3 "" H 10100 2550 50  0000 C CNN
+	1    10100 2550
 	0    1    1    0   
 $EndComp
 $Comp
-L power:VCC #PWR0102
-U 1 1 5080AA9F
-P 12550 1100
-F 0 "#PWR0102" H 12550 950 50  0001 C CNN
-F 1 "VCC" H 12550 1250 50  0000 C CNN
-F 2 "" H 12550 1100 50  0000 C CNN
-F 3 "" H 12550 1100 50  0000 C CNN
-	1    12550 1100
-	1    0    0    -1  
-$EndComp
-$Comp
-L boosterpack:Ti_Booster_40_J1 J7
+L boosterpack:Ti_Booster_40_J1 J1
 U 1 1 5080DB5C
-P 13150 1550
-F 0 "J7" H 13100 2200 60  0000 C CNN
-F 1 "TI_BOOSTER_40_J1" H 13150 900 60  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" V 13600 1550 60  0001 C CNN
-F 3 "" H 13150 1550 60  0001 C CNN
-	1    13150 1550
+P 9350 1550
+F 0 "J1" H 9300 2200 60  0000 C CNN
+F 1 "TI_BOOSTER_40_J1" H 9350 900 60  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" V 9800 1550 60  0001 C CNN
+F 3 "" H 9350 1550 60  0001 C CNN
+	1    9350 1550
 	1    0    0    -1  
 $EndComp
 $Comp
-L boosterpack:Ti_Booster_40_J2 J12
+L boosterpack:Ti_Booster_40_J2 J2
 U 1 1 5080DBF4
-P 13150 3100
-F 0 "J12" H 13100 3750 60  0000 C CNN
-F 1 "TI_BOOSTER_40_J2" H 13150 2450 60  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" V 13600 3100 60  0001 C CNN
-F 3 "" H 13150 3100 60  0001 C CNN
-	1    13150 3100
+P 10700 3000
+F 0 "J2" H 10650 3650 60  0000 C CNN
+F 1 "TI_BOOSTER_40_J2" H 10700 2350 60  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" V 11150 3000 60  0001 C CNN
+F 3 "" H 10700 3000 60  0001 C CNN
+	1    10700 3000
 	1    0    0    -1  
 $EndComp
 $Comp
-L boosterpack:Ti_Booster_40_J3 J21
+L boosterpack:Ti_Booster_40_J3 J3
 U 1 1 5080DC03
-P 13150 4650
-F 0 "J21" H 13100 5300 60  0000 C CNN
-F 1 "TI_BOOSTER_40_J3" H 13150 4000 60  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" V 13600 4650 60  0001 C CNN
-F 3 "" H 13150 4650 60  0001 C CNN
-	1    13150 4650
+P 10700 1500
+F 0 "J3" H 10650 2150 60  0000 C CNN
+F 1 "TI_BOOSTER_40_J3" H 10700 850 60  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" V 11150 1500 60  0001 C CNN
+F 3 "" H 10700 1500 60  0001 C CNN
+	1    10700 1500
 	1    0    0    -1  
 $EndComp
 $Comp
-L boosterpack:Ti_Booster_40_J4 J26
+L boosterpack:Ti_Booster_40_J4 J4
 U 1 1 5080DC12
-P 13150 6200
-F 0 "J26" H 13100 6850 60  0000 C CNN
-F 1 "TI_BOOSTER_40_J4" H 13150 5550 60  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" V 13600 6200 60  0001 C CNN
-F 3 "" H 13150 6200 60  0001 C CNN
-	1    13150 6200
+P 9350 3000
+F 0 "J4" H 9300 3650 60  0000 C CNN
+F 1 "TI_BOOSTER_40_J4" H 9350 2350 60  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" V 9800 3000 60  0001 C CNN
+F 3 "" H 9350 3000 60  0001 C CNN
+	1    9350 3000
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0103
 U 1 1 5080DC79
-P 12550 4300
-F 0 "#PWR0103" H 12550 4050 50  0001 C CNN
-F 1 "GND" H 12550 4150 50  0000 C CNN
-F 2 "" H 12550 4300 50  0000 C CNN
-F 3 "" H 12550 4300 50  0000 C CNN
-	1    12550 4300
+P 10100 1150
+F 0 "#PWR0103" H 10100 900 50  0001 C CNN
+F 1 "GND" H 10100 1000 50  0000 C CNN
+F 2 "" H 10100 1150 50  0000 C CNN
+F 3 "" H 10100 1150 50  0000 C CNN
+	1    10100 1150
 	0    1    1    0   
 $EndComp
 $Comp
 L power:+5V #PWR0104
 U 1 1 5080DC8B
-P 12550 4200
-F 0 "#PWR0104" H 12550 4050 50  0001 C CNN
-F 1 "+5V" H 12550 4340 50  0000 C CNN
-F 2 "" H 12550 4200 50  0000 C CNN
-F 3 "" H 12550 4200 50  0000 C CNN
-	1    12550 4200
+P 10100 1050
+F 0 "#PWR0104" H 10100 900 50  0001 C CNN
+F 1 "+5V" H 10100 1190 50  0000 C CNN
+F 2 "" H 10100 1050 50  0000 C CNN
+F 3 "" H 10100 1050 50  0000 C CNN
+	1    10100 1050
 	1    0    0    -1  
 $EndComp
 Text Notes 8550 600  0    60   ~ 0
@@ -110,61 +98,16 @@ Wire Notes Line
 Wire Notes Line
 	9925 825  9925 475 
 Wire Notes Line
-	8500 3450 11200 3450
-Text GLabel 10450 1200 2    50   Input ~ 0
-P2.6
-Text GLabel 10450 1300 2    50   Input ~ 0
-P2.7
-Text GLabel 10450 1400 2    50   Input ~ 0
-TEST
-Text GLabel 10450 1500 2    50   Input ~ 0
-RST
-Text GLabel 10450 1600 2    50   Input ~ 0
-P1.7
-Text GLabel 10450 1700 2    50   Input ~ 0
-P1.6
-Text GLabel 10450 1800 2    50   Input ~ 0
-P2.5
-Text GLabel 10450 1900 2    50   Input ~ 0
-P2.4
-Text GLabel 10450 2000 2    50   Input ~ 0
-P2.3
-Text GLabel 9050 1300 0    50   Input ~ 0
-P1.1
-Text GLabel 9050 1400 0    50   Input ~ 0
-P1.2
-Text GLabel 9050 1500 0    50   Input ~ 0
-P1.3
-Text GLabel 9050 1600 0    50   Input ~ 0
-P1.4
-Text GLabel 9050 1700 0    50   Input ~ 0
-P1.5
-Text GLabel 9050 1800 0    50   Input ~ 0
-P2.0
-Text GLabel 9050 1900 0    50   Input ~ 0
-P2.1
-Text GLabel 9050 2000 0    50   Input ~ 0
-P2.2
+	8500 3850 11200 3850
 $Comp
 L power:+3.3V #PWR0105
 U 1 1 5EE1925F
-P 9150 1000
-F 0 "#PWR0105" H 9150 850 50  0001 C CNN
-F 1 "+3.3V" V 9250 1050 50  0000 C CNN
-F 2 "" H 9150 1000 50  0000 C CNN
-F 3 "" H 9150 1000 50  0000 C CNN
-	1    9150 1000
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0106
-U 1 1 5EE19BA5
-P 10350 2150
-F 0 "#PWR0106" H 10350 1900 50  0001 C CNN
-F 1 "GND" H 10350 2000 50  0000 C CNN
-F 2 "" H 10350 2150 50  0000 C CNN
-F 3 "" H 10350 2150 50  0000 C CNN
-	1    10350 2150
+P 8600 1000
+F 0 "#PWR0105" H 8600 850 50  0001 C CNN
+F 1 "+3.3V" V 8700 1050 50  0000 C CNN
+F 2 "" H 8600 1000 50  0000 C CNN
+F 3 "" H 8600 1000 50  0000 C CNN
+	1    8600 1000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -179,7 +122,7 @@ F 3 "~" H 5050 4500 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Text GLabel 5850 4550 2    50   Input ~ 0
-P1.6
+P2.1
 Wire Wire Line
 	5150 4150 5150 4300
 Text GLabel 4950 4150 0    50   Input ~ 0
@@ -255,7 +198,7 @@ Wire Wire Line
 Wire Wire Line
 	5000 5350 5000 5500
 Text GLabel 6350 4200 2    50   Input ~ 0
-P1.7
+P2.3
 Text GLabel 6150 4200 0    50   Input ~ 0
 Trig1
 Wire Wire Line
@@ -278,7 +221,7 @@ F 3 "~" H 6200 3450 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Text GLabel 6350 3100 2    50   Input ~ 0
-P1.4
+P2.2
 Text GLabel 6150 3100 0    50   Input ~ 0
 Trig0
 Wire Wire Line
@@ -307,11 +250,11 @@ Wire Wire Line
 Wire Wire Line
 	5050 3050 5050 3200
 Text GLabel 5850 3450 2    50   Input ~ 0
-P1.5
+P2.0
 Wire Wire Line
 	5150 3200 5150 3050
-Text GLabel 10200 4100 2    50   Input ~ 0
-P2.5
+Text GLabel 10350 4700 2    50   Input ~ 0
+P6.3
 $Comp
 L Connector:Conn_01x02_Male J23
 U 1 1 5E7089E9
@@ -326,12 +269,12 @@ $EndComp
 $Comp
 L Connector:Conn_01x02_Male J18
 U 1 1 5E708A39
-P 10050 4450
-F 0 "J18" V 10203 4263 50  0000 R CNN
-F 1 "Conn_01x02_Male" V 10112 4263 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10050 4450 50  0001 C CNN
-F 3 "~" H 10050 4450 50  0001 C CNN
-	1    10050 4450
+P 10200 5050
+F 0 "J18" V 10353 4863 50  0000 R CNN
+F 1 "Conn_01x02_Male" V 10262 4863 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10200 5050 50  0001 C CNN
+F 3 "~" H 10200 5050 50  0001 C CNN
+	1    10200 5050
 	0    -1   -1   0   
 $EndComp
 Text GLabel 6350 5400 0    50   Input ~ 0
@@ -343,22 +286,22 @@ Wire Wire Line
 Wire Wire Line
 	6500 5400 6500 5550
 Wire Wire Line
-	10200 4100 10150 4100
+	10350 4700 10300 4700
 Wire Wire Line
-	10150 4100 10150 4250
-Text GLabel 10000 4100 0    50   Input ~ 0
+	10300 4700 10300 4850
+Text GLabel 10150 4700 0    50   Input ~ 0
 PWM2N
 Wire Wire Line
-	10000 4100 10050 4100
+	10150 4700 10200 4700
 Wire Wire Line
-	10050 4100 10050 4250
+	10200 4700 10200 4850
 Text GLabel 6000 1050 0    50   Input ~ 0
 ADC0
 $Comp
-L Connector:Conn_01x02_Male J2
+L Connector:Conn_01x02_Male J12
 U 1 1 5E718E4F
 P 6150 1400
-F 0 "J2" V 6150 1550 50  0000 R CNN
+F 0 "J12" V 6150 1550 50  0000 R CNN
 F 1 "Conn_01x02_Male" V 6650 1850 50  0000 R CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 6150 1400 50  0001 C CNN
 F 3 "~" H 6150 1400 50  0001 C CNN
@@ -374,10 +317,10 @@ Wire Wire Line
 Text GLabel 7400 1050 0    50   Input ~ 0
 ADC1
 $Comp
-L Connector:Conn_01x02_Male J3
+L Connector:Conn_01x02_Male J21
 U 1 1 5E722316
 P 7450 1400
-F 0 "J3" V 7450 1550 50  0000 R CNN
+F 0 "J21" V 7450 1550 50  0000 R CNN
 F 1 "Conn_01x02_Male" V 7900 1700 50  0000 R CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 7450 1400 50  0001 C CNN
 F 3 "~" H 7450 1400 50  0001 C CNN
@@ -458,72 +401,72 @@ Wire Wire Line
 $Comp
 L Connector:Conn_01x02_Male J15
 U 1 1 5E76127F
-P 9000 3900
-F 0 "J15" V 9153 3713 50  0000 R CNN
-F 1 "Conn_01x02_Male" V 9062 3713 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 9000 3900 50  0001 C CNN
-F 3 "~" H 9000 3900 50  0001 C CNN
-	1    9000 3900
+P 9150 4500
+F 0 "J15" V 9303 4313 50  0000 R CNN
+F 1 "Conn_01x02_Male" V 9212 4313 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 9150 4500 50  0001 C CNN
+F 3 "~" H 9150 4500 50  0001 C CNN
+	1    9150 4500
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J16
 U 1 1 5E7612D7
-P 10000 3900
-F 0 "J16" V 10153 3713 50  0000 R CNN
-F 1 "Conn_01x02_Male" V 10062 3713 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10000 3900 50  0001 C CNN
-F 3 "~" H 10000 3900 50  0001 C CNN
-	1    10000 3900
+P 10150 4500
+F 0 "J16" V 10303 4313 50  0000 R CNN
+F 1 "Conn_01x02_Male" V 10212 4313 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10150 4500 50  0001 C CNN
+F 3 "~" H 10150 4500 50  0001 C CNN
+	1    10150 4500
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J17
 U 1 1 5E761337
-P 9000 4400
-F 0 "J17" V 9153 4213 50  0000 R CNN
-F 1 "Conn_01x02_Male" V 9062 4213 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 9000 4400 50  0001 C CNN
-F 3 "~" H 9000 4400 50  0001 C CNN
-	1    9000 4400
+P 9150 5000
+F 0 "J17" V 9303 4813 50  0000 R CNN
+F 1 "Conn_01x02_Male" V 9212 4813 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 9150 5000 50  0001 C CNN
+F 3 "~" H 9150 5000 50  0001 C CNN
+	1    9150 5000
 	0    -1   -1   0   
 $EndComp
-Text GLabel 8950 3600 0    50   Input ~ 0
+Text GLabel 9100 4200 0    50   Input ~ 0
 PWM1
-Text GLabel 9950 3600 0    50   Input ~ 0
+Text GLabel 10100 4200 0    50   Input ~ 0
 PWM1N
-Text GLabel 8950 4100 0    50   Input ~ 0
+Text GLabel 9100 4700 0    50   Input ~ 0
 PWM2
 Wire Wire Line
-	8950 3600 9000 3600
+	9100 4200 9150 4200
 Wire Wire Line
-	9000 3600 9000 3700
+	9150 4200 9150 4300
 Wire Wire Line
-	9950 3600 10000 3600
+	10100 4200 10150 4200
 Wire Wire Line
-	10000 3600 10000 3700
+	10150 4200 10150 4300
 Wire Wire Line
-	8950 4100 9000 4100
+	9100 4700 9150 4700
 Wire Wire Line
-	9000 4100 9000 4200
-Text GLabel 9150 3600 2    50   Input ~ 0
-P2.1
+	9150 4700 9150 4800
+Text GLabel 9300 4200 2    50   Input ~ 0
+P6.0
 Wire Wire Line
-	9150 3600 9100 3600
+	9300 4200 9250 4200
 Wire Wire Line
-	9100 3600 9100 3700
-Text GLabel 10150 3600 2    50   Input ~ 0
-P2.2
-Text GLabel 9150 4100 2    50   Input ~ 0
-P2.4
+	9250 4200 9250 4300
+Text GLabel 10300 4200 2    50   Input ~ 0
+P6.1
+Text GLabel 9300 4700 2    50   Input ~ 0
+P6.2
 Wire Wire Line
-	9150 4100 9100 4100
+	9300 4700 9250 4700
 Wire Wire Line
-	9100 4100 9100 4200
+	9250 4700 9250 4800
 Wire Wire Line
-	10150 3600 10100 3600
+	10300 4200 10250 4200
 Wire Wire Line
-	10100 3600 10100 3700
+	10250 4200 10250 4300
 $Comp
 L Connector_Generic:Conn_02x13_Odd_Even J6
 U 1 1 5EE18C86
@@ -718,8 +661,8 @@ F 3 "" H 7300 2050 50  0000 C CNN
 $EndComp
 Wire Wire Line
 	7200 1900 7400 1900
-Text Notes 8750 5150 0    50   ~ 0
-Ligação físicas do timer nas portas\nTA1.1 é o P2.1\nTA1.1 é o P2.2\nP2.1 e P2.2 geram mesmo sinal PWM\n\nTA1.2 é o P2.4\nTA1.2 é o P2.5\nP2.4 e P2.5 geram mesmo sinal PWM\n
+Text Notes 8850 5550 0    50   ~ 0
+Ligação físicas do timer nas portas\nTB3.1 é o P6.0\nTB3.2 é o P6.1\nTB3.3 é o P6.2\nTB3.4 é o P6.3\n
 $Comp
 L pspice:CAP C2
 U 1 1 5EFE9E76
@@ -874,10 +817,6 @@ Wire Wire Line
 	3350 3650 3350 3750
 Text Notes 7000 6750 0    50   ~ 0
 SHIELD EXP430G2 PARA CARRINHO AUTÔNOMO\nLIGAÇÃO CONFORME PLACA DE POTÊNCIA
-Wire Notes Line
-	8500 500  8500 3450
-Text GLabel 9050 1200 0    50   Input ~ 0
-P1.0
 $Comp
 L Transistor_FET:2N7002 Q2
 U 1 1 5EE47346
@@ -1037,12 +976,12 @@ Wire Wire Line
 	4250 7350 4400 7350
 Connection ~ 4250 7350
 Text GLabel 5000 7350 0    50   Input ~ 0
-P1.1
+P1.6
 Wire Wire Line
 	5000 7350 5150 7350
 Connection ~ 5150 7350
 Text GLabel 3200 7350 0    50   Input ~ 0
-P1.2
+P1.7
 Wire Wire Line
 	3200 7350 3400 7350
 Connection ~ 3400 7350
@@ -1512,10 +1451,10 @@ Wire Wire Line
 Wire Wire Line
 	3450 1300 3450 1400
 $Comp
-L Connector:Conn_01x02_Male J1
+L Connector:Conn_01x02_Male J7
 U 1 1 5F33B8E9
 P 4450 1000
-F 0 "J1" V 4450 1100 50  0000 R CNN
+F 0 "J7" V 4450 1100 50  0000 R CNN
 F 1 "Conn_01x02_Male" H 4600 700 50  0000 R CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 4450 1000 50  0001 C CNN
 F 3 "~" H 4450 1000 50  0001 C CNN
@@ -1558,52 +1497,10 @@ F 3 "http://www.onsemi.com/pub_link/Collateral/NCP1117-D.PDF" H 3550 750 50  000
 	1    3450 1000
 	1    0    0    -1  
 $EndComp
-Text Notes 9700 1600 0    60   ~ 0
-1
 Wire Wire Line
-	9150 1000 9150 1100
+	8600 1000 8600 1100
 Wire Wire Line
-	9150 1100 9300 1100
-Wire Wire Line
-	10250 1100 10350 1100
-Wire Wire Line
-	10350 1100 10350 2150
-Wire Wire Line
-	9300 1200 9050 1200
-Wire Wire Line
-	9050 1300 9300 1300
-Wire Wire Line
-	9300 1400 9050 1400
-Wire Wire Line
-	9050 1500 9300 1500
-Wire Wire Line
-	9050 1600 9300 1600
-Wire Wire Line
-	9300 1700 9050 1700
-Wire Wire Line
-	9050 1800 9300 1800
-Wire Wire Line
-	9300 1900 9050 1900
-Wire Wire Line
-	9050 2000 9300 2000
-Wire Wire Line
-	10450 1200 10250 1200
-Wire Wire Line
-	10450 2000 10250 2000
-Wire Wire Line
-	10250 1900 10450 1900
-Wire Wire Line
-	10450 1800 10250 1800
-Wire Wire Line
-	10250 1700 10450 1700
-Wire Wire Line
-	10450 1600 10250 1600
-Wire Wire Line
-	10450 1500 10250 1500
-Wire Wire Line
-	10450 1400 10250 1400
-Wire Wire Line
-	10450 1300 10250 1300
+	8600 1100 8750 1100
 Connection ~ 3950 1000
 Wire Wire Line
 	4350 2200 4350 2650
@@ -1624,4 +1521,78 @@ Wire Wire Line
 Connection ~ 4250 2000
 Wire Wire Line
 	4250 2000 4250 2450
+Wire Notes Line
+	8500 500  8500 3850
+Text GLabel 8750 1200 0    50   Input ~ 0
+P1.5
+Text GLabel 8750 1300 0    50   Input ~ 0
+P1.6
+Text GLabel 8750 1400 0    50   Input ~ 0
+P1.7
+Text GLabel 8750 1500 0    50   Input ~ 0
+P3.6
+Text GLabel 8750 1600 0    50   Input ~ 0
+P5.2
+Text GLabel 8750 1700 0    50   Input ~ 0
+P4.5
+Text GLabel 8750 1800 0    50   Input ~ 0
+P3.4
+Text GLabel 8750 1900 0    50   Input ~ 0
+P1.3
+Text GLabel 8750 2000 0    50   Input ~ 0
+P1.2
+Text GLabel 10100 1250 0    50   Input ~ 0
+P1.4
+Text GLabel 10100 1350 0    50   Input ~ 0
+P5.3
+Text GLabel 10100 1450 0    50   Input ~ 0
+P5.1
+Text GLabel 10100 1550 0    50   Input ~ 0
+P5.0
+Text GLabel 10100 1650 0    50   Input ~ 0
+P5.4
+Text GLabel 10100 1750 0    50   Input ~ 0
+P1.1
+Text GLabel 10100 1850 0    50   Input ~ 0
+P3.5
+Text GLabel 10100 1950 0    50   Input ~ 0
+P3.1
+Text GLabel 8750 2550 0    50   Input ~ 0
+P2.1
+Text GLabel 8750 2650 0    50   Input ~ 0
+P6.0
+Text GLabel 8750 2750 0    50   Input ~ 0
+P6.1
+Text GLabel 8750 2850 0    50   Input ~ 0
+P6.2
+Text GLabel 8750 2950 0    50   Input ~ 0
+P6.3
+Text GLabel 8750 3050 0    50   Input ~ 0
+P6.4
+Text GLabel 8750 3150 0    50   Input ~ 0
+P3.7
+Text GLabel 8750 3250 0    50   Input ~ 0
+P2.4
+Text GLabel 8750 3350 0    50   Input ~ 0
+P3.3
+Text GLabel 8750 3450 0    50   Input ~ 0
+P3.2
+Text GLabel 10100 2650 0    50   Input ~ 0
+P2.0
+Text GLabel 10100 2750 0    50   Input ~ 0
+P2.2
+Text GLabel 10100 2850 0    50   Input ~ 0
+P4.0
+Text GLabel 10100 2950 0    50   Input ~ 0
+RST
+Text GLabel 10100 3050 0    50   Input ~ 0
+P4.6
+Text GLabel 10100 3150 0    50   Input ~ 0
+P4.7
+Text GLabel 10100 3250 0    50   Input ~ 0
+P4.4
+Text GLabel 10100 3350 0    50   Input ~ 0
+P2.5
+Text GLabel 10100 3450 0    50   Input ~ 0
+P3.0
 $EndSCHEMATC
