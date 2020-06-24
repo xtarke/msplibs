@@ -198,7 +198,7 @@ Wire Wire Line
 Wire Wire Line
 	5000 5350 5000 5500
 Text GLabel 6350 4200 2    50   Input ~ 0
-P2.3
+P2.4
 Text GLabel 6150 4200 0    50   Input ~ 0
 Trig1
 Wire Wire Line
@@ -495,8 +495,6 @@ F 3 "" H 1850 2250 50  0000 C CNN
 $EndComp
 Wire Wire Line
 	1700 1050 1850 1050
-Wire Wire Line
-	1850 1050 1850 1750
 $Comp
 L power:+5V #PWR0108
 U 1 1 5EE2252F
@@ -726,58 +724,10 @@ Wire Wire Line
 	3950 1000 3950 1050
 Wire Wire Line
 	3950 1550 3950 1650
-$Comp
-L Connector:Conn_01x04_Male J11
-U 1 1 5F015F8B
-P 3850 2550
-F 0 "J11" H 3956 2828 50  0000 C CNN
-F 1 "Conn_01x04_Male" H 3956 2737 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 3850 2550 50  0001 C CNN
-F 3 "~" H 3850 2550 50  0001 C CNN
-	1    3850 2550
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0116
-U 1 1 5F0162BF
-P 4350 2200
-F 0 "#PWR0116" H 4350 2050 50  0001 C CNN
-F 1 "+5V" V 4350 2400 50  0000 C CNN
-F 2 "" H 4350 2200 50  0000 C CNN
-F 3 "" H 4350 2200 50  0000 C CNN
-	1    4350 2200
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0117
-U 1 1 5F02C3E1
-P 4250 2850
-F 0 "#PWR0117" H 4250 2600 50  0001 C CNN
-F 1 "GND" H 4250 2700 50  0000 C CNN
-F 2 "" H 4250 2850 50  0000 C CNN
-F 3 "" H 4250 2850 50  0000 C CNN
-	1    4250 2850
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4250 2750 4250 2850
-Wire Wire Line
-	4250 2550 4250 2450
-Wire Wire Line
-	4050 2750 4250 2750
-Wire Wire Line
-	4050 2650 4350 2650
-Wire Wire Line
-	4050 2550 4250 2550
 Text Notes 4650 5250 0    50   ~ 0
 Encoder
 Text Notes 650  5350 0    50   ~ 0
 Sensor optico\nSaída LM393 c/ pull up 10k
-Wire Wire Line
-	1700 1750 1850 1750
-Connection ~ 1850 1750
-Wire Wire Line
-	1850 1750 1850 2250
 $Comp
 L Device:R R2
 U 1 1 5EE3A0BC
@@ -1503,11 +1453,6 @@ Wire Wire Line
 	8600 1100 8750 1100
 Connection ~ 3950 1000
 Wire Wire Line
-	4350 2200 4350 2650
-Wire Wire Line
-	4050 2450 4250 2450
-Connection ~ 4250 2450
-Wire Wire Line
 	4000 900  4250 900 
 Wire Wire Line
 	3950 1000 4250 1000
@@ -1518,9 +1463,6 @@ Wire Wire Line
 	4250 2000 3350 2000
 Wire Wire Line
 	3350 2000 3350 2950
-Connection ~ 4250 2000
-Wire Wire Line
-	4250 2000 4250 2450
 Wire Notes Line
 	8500 500  8500 3850
 Text GLabel 8750 1200 0    50   Input ~ 0
@@ -1595,4 +1537,6 @@ Text GLabel 10100 3350 0    50   Input ~ 0
 P2.5
 Text GLabel 10100 3450 0    50   Input ~ 0
 P3.0
+Wire Wire Line
+	1850 1050 1850 2250
 $EndSCHEMATC
