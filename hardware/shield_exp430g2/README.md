@@ -4,7 +4,7 @@ This shield connects all microcontroller (MSP-EXP430G2 - MSP430G2553) pins to th
 
 See [this schematic](schematic.pdf).
 
-![Board](./board.png)
+![Shield Board](./board.png)
 
 ## Analog pins
 
@@ -56,3 +56,10 @@ See [this schematic](schematic.pdf).
 | ------- | ------ |
 | P1.2    | TX     |
 | P1.3    | RX     |
+
+## Assembly
+
+
+EXP430G2 with MSP430G2553 ![Shield Board](./board_exp.png)
+Shield and EXP430G2 ![Shield Board](./mount_01.png)
+Power board. Connection with 26 pin flat cable ![Shield Board](./mount_02.png)
