@@ -54,3 +54,9 @@ See [this schematic](schematic.pdf).
 | ------- | ------ |
 | P1.7    | TX     |
 | P1.6    | RX     |
+
+## Assembly
+
+Shield and EXP430FR2355 ![Shield Board](./mount_02.png)
+Shield, EXP430FR2355 and chassi. ![Shield Board](./mount_01.png)
+Power board. Connection with 26 pin flat cable ![Shield Board](./mount_03.png)
