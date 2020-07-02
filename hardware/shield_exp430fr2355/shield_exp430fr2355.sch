@@ -1556,7 +1556,7 @@ U 1 1 5EF85189
 P 1250 3350
 F 0 "H1" H 1350 3396 50  0000 L CNN
 F 1 "MountingHole" H 1350 3305 50  0000 L CNN
-F 2 "" H 1250 3350 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 1250 3350 50  0001 C CNN
 F 3 "~" H 1250 3350 50  0001 C CNN
 	1    1250 3350
 	1    0    0    -1  
@@ -1567,7 +1567,7 @@ U 1 1 5EF8534D
 P 1250 3600
 F 0 "H2" H 1350 3646 50  0000 L CNN
 F 1 "MountingHole" H 1350 3555 50  0000 L CNN
-F 2 "" H 1250 3600 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 1250 3600 50  0001 C CNN
 F 3 "~" H 1250 3600 50  0001 C CNN
 	1    1250 3600
 	1    0    0    -1  
@@ -1578,9 +1578,20 @@ U 1 1 5EF85455
 P 1250 3850
 F 0 "H3" H 1350 3896 50  0000 L CNN
 F 1 "MountingHole" H 1350 3805 50  0000 L CNN
-F 2 "" H 1250 3850 50  0001 C CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1250 3850 50  0001 C CNN
 F 3 "~" H 1250 3850 50  0001 C CNN
 	1    1250 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 5EF8EF7F
+P 1250 4100
+F 0 "H4" H 1350 4146 50  0000 L CNN
+F 1 "MountingHole" H 1350 4055 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1250 4100 50  0001 C CNN
+F 3 "~" H 1250 4100 50  0001 C CNN
+	1    1250 4100
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
