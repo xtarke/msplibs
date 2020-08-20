@@ -67,6 +67,10 @@ void init_clock_system(){
     BCSCTL3 |= LFXT1S_2;
 }
 
+
+
+
+
 /**
   * @brief  Configura temporizador A.
   *
