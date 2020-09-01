@@ -18,11 +18,11 @@ See [this schematic](schematic.pdf).
 ## Ultrasonic sensor
 
 | MSP Pin | Signal|
-| ------- | ------|
-| P2.0    | Echo0 |
-| P2.2    | Trig0 |
-| P2.1    | Echo1 |
-| P2.4    | Trig1 |
+| ----------- | ------|
+| P2.0/TB1.1  | Echo0 |
+| P2.2        | Trig0 |
+| P2.1/TB1.2  | Echo1 |
+| P2.4        | Trig1 |
 
 ## Motors
 

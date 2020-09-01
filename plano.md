@@ -42,7 +42,7 @@
 
 - Tópico 6:
   - Slides: Temporizadores
-    - Vídeo aula - Temporizadores e watchdog (23m)
+    - Vídeo aula - Temporizadores e watchdog (40m)
     - Vídeo aula - Temporizador (23m)
     - Vídeo aula - Timer em modo captura (25m)
     - Vídeo aula - Timer em modo PWM (47m)

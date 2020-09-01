@@ -10,7 +10,6 @@
  *      - Utiliza o evento de captura do Timer A para borda
  *      de subida e descida de uma porta.
  *
- *
  */
 
 
@@ -20,7 +19,7 @@
 #include <stdint.h>
 
 
-#ifndef __MSP430F2132__
+#ifndef __MSP430G2553__
     #error "Example not validated with this device."
 #endif
 

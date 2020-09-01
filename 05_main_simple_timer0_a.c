@@ -87,7 +87,7 @@ void config_timerA_0(){
     /* IRQ por comparação entre contagem e comparador 0 */
     TA0CCTL0 = CCIE;
     /* Valor de comparação é 50000 */
-    TA0CCR0 = 20000;
+    TA0CCR0 = 50000;
 
     /* TA0CCTL1 = CCIE;
     TA0CCR1 = 200;
