@@ -23,15 +23,19 @@ int main(void)
     PM5CTL0 &= ~LOCKLPM5;
 #endif
 
-    P2DIR = LED;
+    /* Todos pinos como entrada */
+    P1DIR = 0;
+    /* Todos pino com pull up */
+    P1REN = 0xff;
+
+    /* Todos pinos como saída */
+    P3DIR = 0xff;
 
     /* main não pode retornar */
     while(1){
-        /* Liga/Desliga LED */
-        P2OUT = P2OUT ^ LED;
 
-        /* Atraso */
-        for (i=DELAY;i--; i > 0);
+        /*  Copia estado das entradas para porta de saída */
+        P3OUT = P1IN;
     }
 
     return 0;
