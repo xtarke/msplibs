@@ -131,7 +131,7 @@ i2c_mode i2c_master_read_reg(uint8_t dev_addr, uint8_t reg_addr, uint8_t count, 
   * @retval i2c_mode: possíveis erros de transmissão.
   */
 i2c_mode i2c_write_single_byte(uint8_t dev_addr, uint8_t byte){
-    return i2c_master_write_reg(dev_addr, byte, 0, NULL);
+    return i2c_master_write_reg(dev_addr, byte, NULL, 0);
 }
 
 
@@ -173,7 +173,9 @@ i2c_mode i2c_master_write_reg(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_d
     IE2 |= UCB0TXIE;                        // Enable TX interrupt
 
     UCB0CTL1 |= UCTR + UCTXSTT;             // I2C TX, start condition
-    __bis_SR_register(CPUOFF + GIE);              // Enter LPM0 w/ interrupts
+
+    //__bis_SR_register(CPUOFF + GIE);       / Enter LPM0 w/ interrupts: Use no hardware real
+    __bis_SR_register(GIE);                // Enable interrupts: Use no Proteus
 
     return i2c_status.state;
 }

@@ -46,6 +46,16 @@ Validação dos periféricos e lista de problemas da simulação. Exemplos estã
         - ISR com overflow e comparador 0 (CCR0).
       - _ToDo_: verificar outro temporizador.
 
+
+    - Sistema de clock (DCO): Veja [04_main_simple_clock_g2553.c](./04_main_simple_clock_g2553.c)
+      - Alterar CLOCK_1MHz, CLOCK_8MHz, CLOCK_12MHz ou CLOCK_16MHz verificando a frequência de P1.0.
+
+
+    - I2C: Veja [09_main_i2c_single_byte.c](./09_main_i2c_single_byte.c)
+      - Por algum motivo, não se pode desligar a CPU no Proteus. Use apenas GIE em [i2c_master_g2553.c](./i2c_master_g2553.c) na função i2c_master_write_reg.
+
+
+
 ###  MSP430F2132
 
   - Modo captura: F2132 P1.1 / TA1.0  (Timer 1/ CCR0)

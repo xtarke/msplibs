@@ -103,14 +103,14 @@ int main(void) {
     P1DIR |= BIT0;
     CLR_BIT(P1OUT,BIT0);
 
-    for (i=0; i < 8; i++){
-        i2c_status = i2c_write_single_byte(0x27, 0xff);
+    while (1){
+        i2c_status = i2c_write_single_byte(DEVICE_I2C_ADDR, 0x00);
        _delay_cycles(1000000);
 
        if (i2c_status == NACK_MODE)
            SET_BIT(P1OUT,BIT0);
 
-       i2c_status = i2c_write_single_byte(0x27, 0x00);
+       i2c_status = i2c_write_single_byte(DEVICE_I2C_ADDR, 0xff);
 
        if (i2c_status == NACK_MODE)
             SET_BIT(P1OUT,BIT0);
