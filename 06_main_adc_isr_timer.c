@@ -144,7 +144,7 @@ int main (void)
 
     while (1){
         /* Desliga CPU até ADC terminar */
-        __bis_SR_register(CPUOFF + GIE);
+        //__bis_SR_register(CPUOFF + GIE);
 
         /* Remove caracteres antigos do LCD */
         if (adc_val < 1000)

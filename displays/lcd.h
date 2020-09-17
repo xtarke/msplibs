@@ -23,7 +23,7 @@
 
 /* Portas */
 #define LCD_DATA_PORT P2
-#define LCD_CTRL_PORT P1
+#define LCD_CTRL_PORT P3
 
 /* Pinos de controle */
 #define E_PIN  BIT1

@@ -54,6 +54,8 @@ Validação dos periféricos e lista de problemas da simulação. Exemplos estã
     - I2C: Veja [09_main_i2c_single_byte.c](./09_main_i2c_single_byte.c)
       - Por algum motivo, não se pode desligar a CPU no Proteus. Use apenas GIE em [i2c_master_g2553.c](./i2c_master_g2553.c) na função i2c_master_write_reg.
 
+    - ADC:
+      - Exemplos não executam corretamente. 
 
 
 ###  MSP430F2132
