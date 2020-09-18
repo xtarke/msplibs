@@ -7,11 +7,20 @@
  *
  *      Exemplo de parcial de aplicação:
  *
- *      - Utiliza o evento de captura do Timer A para borda
+ *      - Utiliza o evento de captura do Timer para borda
  *      de subida e descida de uma porta.
  *
+ *                MSP430FR2355
+ *            -----------------
+ *        /|\|              XIN|-
+ *         | |                 |
+ *         --|RST          XOUT|-
+ *           |                 |
+ *           |       P2.0/TB1.1| <-- Sensor/botão
+ *           |                 |
+ *           |       P2.1/TB1.2| <-- Sensor/botão
+ *           |                 |
  */
-
 
 #include <msp430.h>
 
@@ -146,6 +155,9 @@ void __attribute__ ((interrupt(TIMER1_B0_VECTOR))) TIMER1_B0_ISR (void)
     uint16_t timer_count_1 = 0;
 
     TB1CCTL0 &= ~CCIFG;
+
+
+    /* ToDo: validar P2IN para detecção da borda */
 
     /* Borda de subida */
     if (TST_BIT(P2IN, BIT0)){
