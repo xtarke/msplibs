@@ -355,49 +355,41 @@ Wire Wire Line
 $Comp
 L Connector:Conn_01x02_Male J28
 U 1 1 5E74836B
-P 2150 7250
-F 0 "J28" V 2303 7063 50  0000 R CNN
-F 1 "Conn_01x02_Male" V 2212 7063 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2150 7250 50  0001 C CNN
-F 3 "~" H 2150 7250 50  0001 C CNN
-	1    2150 7250
+P 3150 7600
+F 0 "J28" V 3303 7413 50  0000 R CNN
+F 1 "Conn_01x02_Male" V 3212 7413 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3150 7600 50  0001 C CNN
+F 3 "~" H 3150 7600 50  0001 C CNN
+	1    3150 7600
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Connector:Conn_01x02_Male J27
 U 1 1 5E7483D7
-P 1200 7250
-F 0 "J27" V 1353 7063 50  0000 R CNN
-F 1 "Conn_01x02_Male" V 1262 7063 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1200 7250 50  0001 C CNN
-F 3 "~" H 1200 7250 50  0001 C CNN
-	1    1200 7250
+P 1200 7550
+F 0 "J27" V 1353 7363 50  0000 R CNN
+F 1 "Conn_01x02_Male" V 1262 7363 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1200 7550 50  0001 C CNN
+F 3 "~" H 1200 7550 50  0001 C CNN
+	1    1200 7550
 	0    -1   -1   0   
 $EndComp
-Text GLabel 2300 6950 2    50   Input ~ 0
-Rx
-Text GLabel 1350 6950 2    50   Input ~ 0
-Tx
-Text GLabel 1150 6950 0    50   Input ~ 0
+Text GLabel 1150 7250 0    50   Input ~ 0
 RXB
-Text GLabel 2100 6950 0    50   Input ~ 0
+Text GLabel 3100 7300 0    50   Input ~ 0
 TXB
 Wire Wire Line
-	2300 6950 2250 6950
+	3250 7300 3250 7400
 Wire Wire Line
-	2250 6950 2250 7050
+	3100 7300 3150 7300
 Wire Wire Line
-	2100 6950 2150 6950
+	3150 7300 3150 7400
 Wire Wire Line
-	2150 6950 2150 7050
+	1300 7250 1300 7350
 Wire Wire Line
-	1350 6950 1300 6950
+	1150 7250 1200 7250
 Wire Wire Line
-	1300 6950 1300 7050
-Wire Wire Line
-	1150 6950 1200 6950
-Wire Wire Line
-	1200 6950 1200 7050
+	1200 7250 1200 7350
 $Comp
 L Connector:Conn_01x02_Male J15
 U 1 1 5E76127F
@@ -767,174 +759,10 @@ Wire Wire Line
 	3350 3650 3350 3750
 Text Notes 7000 6750 0    50   ~ 0
 SHIELD EXP430FR2355 PARA CARRINHO AUTÔNOMO\nLIGAÇÃO CONFORME PLACA DE POTÊNCIA
-$Comp
-L Transistor_FET:2N7002 Q2
-U 1 1 5EE47346
-P 5550 7250
-F 0 "Q2" V 5800 7250 50  0000 C CNN
-F 1 "2N7002" V 5891 7250 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 5750 7175 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 5550 7250 50  0001 L CNN
-	1    5550 7250
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R14
-U 1 1 5EE51332
-P 5150 7150
-F 0 "R14" H 5220 7196 50  0000 L CNN
-F 1 "2k2" H 5220 7105 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 5080 7150 50  0001 C CNN
-F 3 "~" H 5150 7150 50  0001 C CNN
-	1    5150 7150
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R15
-U 1 1 5EE6E7BC
-P 6000 7150
-F 0 "R15" H 6070 7196 50  0000 L CNN
-F 1 "2k2" H 6070 7105 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 5930 7150 50  0001 C CNN
-F 3 "~" H 6000 7150 50  0001 C CNN
-	1    6000 7150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3.3V #PWR0119
-U 1 1 5EE6ED11
-P 5150 6900
-F 0 "#PWR0119" H 5150 6750 50  0001 C CNN
-F 1 "+3.3V" V 5150 7150 50  0000 C CNN
-F 2 "" H 5150 6900 50  0000 C CNN
-F 3 "" H 5150 6900 50  0000 C CNN
-	1    5150 6900
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0120
-U 1 1 5EE6F11B
-P 6000 6900
-F 0 "#PWR0120" H 6000 6750 50  0001 C CNN
-F 1 "+5V" V 6000 7100 50  0000 C CNN
-F 2 "" H 6000 6900 50  0000 C CNN
-F 3 "" H 6000 6900 50  0000 C CNN
-	1    6000 6900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5150 6950 5550 6950
-Wire Wire Line
-	5550 6950 5550 7050
-Wire Wire Line
-	5150 6900 5150 6950
-Wire Wire Line
-	5150 6950 5150 7000
-Connection ~ 5150 6950
-Wire Wire Line
-	5350 7350 5150 7350
-Wire Wire Line
-	5150 7350 5150 7300
-Wire Wire Line
-	5750 7350 6000 7350
-Wire Wire Line
-	6000 7350 6000 7300
-Wire Wire Line
-	6000 6900 6000 7000
-Text GLabel 6150 7350 2    50   Input ~ 0
-Rx
-Wire Wire Line
-	6000 7350 6150 7350
-Connection ~ 6000 7350
-$Comp
-L Transistor_FET:2N7002 Q1
-U 1 1 5EEAA9AF
-P 3800 7250
-F 0 "Q1" V 4050 7250 50  0000 C CNN
-F 1 "2N7002" V 4141 7250 50  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 4000 7175 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 3800 7250 50  0001 L CNN
-	1    3800 7250
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R12
-U 1 1 5EEAA9B6
-P 3400 7150
-F 0 "R12" H 3470 7196 50  0000 L CNN
-F 1 "2k2" H 3470 7105 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 3330 7150 50  0001 C CNN
-F 3 "~" H 3400 7150 50  0001 C CNN
-	1    3400 7150
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R13
-U 1 1 5EEAA9BD
-P 4250 7150
-F 0 "R13" H 4320 7196 50  0000 L CNN
-F 1 "2k2" H 4320 7105 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric" V 4180 7150 50  0001 C CNN
-F 3 "~" H 4250 7150 50  0001 C CNN
-	1    4250 7150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3.3V #PWR0121
-U 1 1 5EEAA9C4
-P 3400 6900
-F 0 "#PWR0121" H 3400 6750 50  0001 C CNN
-F 1 "+3.3V" V 3400 7150 50  0000 C CNN
-F 2 "" H 3400 6900 50  0000 C CNN
-F 3 "" H 3400 6900 50  0000 C CNN
-	1    3400 6900
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0122
-U 1 1 5EEAA9CA
-P 4250 6900
-F 0 "#PWR0122" H 4250 6750 50  0001 C CNN
-F 1 "+5V" V 4250 7100 50  0000 C CNN
-F 2 "" H 4250 6900 50  0000 C CNN
-F 3 "" H 4250 6900 50  0000 C CNN
-	1    4250 6900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3400 6950 3800 6950
-Wire Wire Line
-	3800 6950 3800 7050
-Wire Wire Line
-	3400 6900 3400 6950
-Wire Wire Line
-	3400 6950 3400 7000
-Connection ~ 3400 6950
-Wire Wire Line
-	3600 7350 3400 7350
-Wire Wire Line
-	3400 7350 3400 7300
-Wire Wire Line
-	4000 7350 4250 7350
-Wire Wire Line
-	4250 7350 4250 7300
-Wire Wire Line
-	4250 6900 4250 7000
-Text GLabel 4400 7350 2    50   Input ~ 0
-Tx
-Wire Wire Line
-	4250 7350 4400 7350
-Connection ~ 4250 7350
-Text GLabel 5000 7350 0    50   Input ~ 0
+Text GLabel 3550 7300 2    50   Input ~ 0
 P1.6
-Wire Wire Line
-	5000 7350 5150 7350
-Connection ~ 5150 7350
-Text GLabel 3200 7350 0    50   Input ~ 0
+Text GLabel 2000 7250 2    50   Input ~ 0
 P1.7
-Wire Wire Line
-	3200 7350 3400 7350
-Connection ~ 3400 7350
 Text GLabel 3100 5500 2    50   Input ~ 0
 P3.0
 $Comp
@@ -1556,7 +1384,7 @@ U 1 1 5EF85189
 P 1250 3350
 F 0 "H1" H 1350 3396 50  0000 L CNN
 F 1 "MountingHole" H 1350 3305 50  0000 L CNN
-F 2 "" H 1250 3350 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 1250 3350 50  0001 C CNN
 F 3 "~" H 1250 3350 50  0001 C CNN
 	1    1250 3350
 	1    0    0    -1  
@@ -1567,7 +1395,7 @@ U 1 1 5EF8534D
 P 1250 3600
 F 0 "H2" H 1350 3646 50  0000 L CNN
 F 1 "MountingHole" H 1350 3555 50  0000 L CNN
-F 2 "" H 1250 3600 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 1250 3600 50  0001 C CNN
 F 3 "~" H 1250 3600 50  0001 C CNN
 	1    1250 3600
 	1    0    0    -1  
@@ -1578,9 +1406,116 @@ U 1 1 5EF85455
 P 1250 3850
 F 0 "H3" H 1350 3896 50  0000 L CNN
 F 1 "MountingHole" H 1350 3805 50  0000 L CNN
-F 2 "" H 1250 3850 50  0001 C CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1250 3850 50  0001 C CNN
 F 3 "~" H 1250 3850 50  0001 C CNN
 	1    1250 3850
 	1    0    0    -1  
 $EndComp
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 5EF8EF7F
+P 1250 4100
+F 0 "H4" H 1350 4146 50  0000 L CNN
+F 1 "MountingHole" H 1350 4055 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1250 4100 50  0001 C CNN
+F 3 "~" H 1250 4100 50  0001 C CNN
+	1    1250 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Diode:BAT54S D?
+U 1 1 5F6A000E
+P 1700 6800
+F 0 "D?" H 1700 7025 50  0000 C CNN
+F 1 "BAT54S" H 1700 6934 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 1775 6925 50  0001 L CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds11005.pdf" H 1580 6800 50  0001 C CNN
+	1    1700 6800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Diode:BAT54S D?
+U 1 1 5F6A0131
+P 3350 6850
+F 0 "D?" H 3350 7075 50  0000 C CNN
+F 1 "BAT54S" H 3350 6984 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 3425 6975 50  0001 L CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds11005.pdf" H 3230 6850 50  0001 C CNN
+	1    3350 6850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1300 7250 1700 7250
+Wire Wire Line
+	1700 7000 1700 7250
+Connection ~ 1700 7250
+Wire Wire Line
+	1700 7250 2000 7250
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F6C452D
+P 2100 6700
+F 0 "#PWR?" H 2100 6550 50  0001 C CNN
+F 1 "+3.3V" V 2100 6950 50  0000 C CNN
+F 2 "" H 2100 6700 50  0000 C CNN
+F 3 "" H 2100 6700 50  0000 C CNN
+	1    2100 6700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2000 6800 2100 6800
+Wire Wire Line
+	2100 6800 2100 6700
+$Comp
+L power:GND #PWR?
+U 1 1 5F6CDAD0
+P 1300 6950
+F 0 "#PWR?" H 1300 6700 50  0001 C CNN
+F 1 "GND" H 1300 6800 50  0000 C CNN
+F 2 "" H 1300 6950 50  0000 C CNN
+F 3 "" H 1300 6950 50  0000 C CNN
+	1    1300 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1300 6950 1300 6800
+Wire Wire Line
+	1300 6800 1400 6800
+Wire Wire Line
+	3250 7300 3350 7300
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F6E1343
+P 3850 6750
+F 0 "#PWR?" H 3850 6600 50  0001 C CNN
+F 1 "+3.3V" V 3850 7000 50  0000 C CNN
+F 2 "" H 3850 6750 50  0000 C CNN
+F 3 "" H 3850 6750 50  0000 C CNN
+	1    3850 6750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 6850 3850 6850
+Wire Wire Line
+	3850 6850 3850 6750
+$Comp
+L power:GND #PWR?
+U 1 1 5F6EB001
+P 2950 6950
+F 0 "#PWR?" H 2950 6700 50  0001 C CNN
+F 1 "GND" H 2950 6800 50  0000 C CNN
+F 2 "" H 2950 6950 50  0000 C CNN
+F 3 "" H 2950 6950 50  0000 C CNN
+	1    2950 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2950 6950 2950 6850
+Wire Wire Line
+	2950 6850 3050 6850
+Wire Wire Line
+	3350 7050 3350 7300
+Connection ~ 3350 7300
+Wire Wire Line
+	3350 7300 3550 7300
 $EndSCHEMATC
