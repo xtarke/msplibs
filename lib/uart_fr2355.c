@@ -141,7 +141,7 @@ void __attribute__ ((interrupt(USCI_A1_VECTOR))) USCI_A1_ISR (void)
 #error Compiler not supported!
 #endif
 {
-    uint8_t data;
+    volatile uint8_t data;
 
     switch(__even_in_range(UCA1IV,USCI_UART_UCTXCPTIFG))
     {
@@ -163,6 +163,7 @@ void __attribute__ ((interrupt(USCI_A1_VECTOR))) USCI_A1_ISR (void)
                     __bic_SR_register_on_exit(CPUOFF);
                 }
             }
+            break;
 
         case USCI_UART_UCTXIFG:     /* Transmit IRQ */
             if (uart_status.send_size != 0){
@@ -177,7 +178,7 @@ void __attribute__ ((interrupt(USCI_A1_VECTOR))) USCI_A1_ISR (void)
                  * mais nada a enviar          */
                 __bic_SR_register_on_exit(CPUOFF);
             }
-
+            break;
 
         case USCI_UART_UCSTTIFG:    /*  START byte received interrupt. */
             break;

@@ -111,9 +111,11 @@ int main(){
         __bis_SR_register(CPUOFF | GIE);
 
         /* Envia resposta */
-        uart_send_package((uint8_t *)message,sizeof(message));
+        uart_send_package((uint8_t *)my_data, 4);
 
         /* Pisca LED para sinalizar que dados chegaram */
         CPL_BIT(P1OUT,BIT0);
+
+        __bis_SR_register(CPUOFF | GIE);
     }
 }
