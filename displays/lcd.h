@@ -22,12 +22,12 @@
 #define DATA_NIBBLE 0
 
 /* Portas */
-#define LCD_DATA_PORT P2
-#define LCD_CTRL_PORT P3
+#define LCD_DATA_PORT P1
+#define LCD_CTRL_PORT P2
 
 /* Pinos de controle */
-#define E_PIN  BIT1
-#define RS_PIN BIT0
+#define E_PIN  BIT7
+#define RS_PIN BIT6
 
 typedef enum {LCD_CMD, LCD_DATA} lcd_data_t;
 

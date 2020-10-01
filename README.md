@@ -60,4 +60,7 @@ Validação dos periféricos e lista de problemas da simulação. Exemplos estã
 
 ###  MSP430F2132
 
-  - Modo captura: F2132 P1.1 / TA1.0  (Timer 1/ CCR0)
+    - Modo captura: F2132 P1.1 / TA1.0  (Timer 1/ CCR0)
+  
+    - ADC:
+      - Trigger por timer não funciona. Usar ADC10CTL0 |= ENC + ADC10SC na ISR do timer.

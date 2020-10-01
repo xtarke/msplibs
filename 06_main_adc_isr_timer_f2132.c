@@ -6,19 +6,22 @@
  *      Instituto Federal de Santa Catarina
  *
  *      Exemplo do conversor analógico digital.
- *      - Trigger do ADC por software.
+ *      - Trigger do ADC por software na ISR do timer
+ *      - Trigger do ADC pelo timer não está funcionando no Proteus.
  *      - Temporização por um timer.
  *
- *                  MSP430G2553
+ *      - Simulação em ./sim/analog/adc_lcd.pdsprj
+ *
+ *                  MSP430F2132
  *               -----------------
  *           /|\|              XIN|-
  *            | |                 |
  *            --|RST          XOUT|-
  *              |                 |
- *  LCD_RS <--  | P1.0    P1.2 A2 | <-- Potenciômetro
- *  LCD_E  <--  | P1.1            |
+ *  LCD_RS <--  | P2.6    P2.0 A0 | <-- Potenciômetro
+ *  LCD_E  <--  | P2.7    P2.1 A0 | <-- Potenciômetro
  *              |                 |
- * LCD_DATA <-- | P2.[0..3]       |
+ * LCD_DATA <-- | P1.[0..3]       |
  */
 
 #include <msp430.h>
@@ -30,11 +33,12 @@
 #include "lib/bits.h"
 #include "displays/lcd.h"
 
-#ifndef __MSP4302553__
+#ifndef __MSP430F2132__
 #error "Clock system not supported for this device"
 #endif
 
-volatile uint16_t adc_val = 0;
+volatile uint16_t adc_val_0 = 0;
+volatile uint16_t adc_val_1 = 0;
 
 /**
  * @brief  Configura sistema de clock para usar o Digitally Controlled Oscillator (DCO).
@@ -69,58 +73,49 @@ void init_clock_system(){
   *
   * @retval none
   */
-void init_adc(){
-    /* ADC10CTL0:
-     * ADC10SHT_2:  16 x ADC10CLKs
-     * ADC10ON   :  ADC10 On/Enable
-     * ADC10IE   :  IRQ Enable
-     */
-    ADC10CTL0 = ADC10SHT_2 + ADC10ON + ADC10IE;
-
-    /* ADC10CTL1:
-     * INCH_2: Selects Channel 2
-     * SHS_2 : TA3 OUT0  (Trigger ligado ao comparador 0 do TA
-     * CONSEQ_2: Repeat single channel
-     */
-    ADC10CTL1 = INCH_2 | SHS_2 | CONSEQ_2;
-
-    /*  P1.2 ADC option select */
-    ADC10AE0 |= BIT2;
-
-    /* ADC10 Enable Conversion */
-    ADC10CTL0 |= ENC;
-}
-
-/**
-  * @brief  Configura temporizador A.
-  *
-  * @param  none
-  *
-  * @retval none
-  */
-void config_timerA_0(){
+//Configurar para usar o timer A
+void timerA_init(){
     /* Timer A0:
      *
-     *
      * TASSEL_2 -> Clock de SMCLK.
-     * MC_1 -> Contagem crescente até CCR0.
+     * MC_1 -> Contagem ate TCCR0.
      * ID_3 -> Prescaler = /8
      */
-    TA0CTL = TASSEL_2 | MC_1 | ID_3;
+     TA0CTL = TASSEL_2 | MC_1 | ID_3 ;   //clock de 1 MHZ
 
-    /* Valor de comparação, período do timer */
-    TA0CCR0 = 40000;
-    /* Habilita saída do temporizador
-     * Deve ser colocado para criar o trigger do ADC
-     */
-    TA0CCTL0 = OUTMOD_3;
+     /* IRQ por comparação entre contagem e comparador 0 */
+     TA0CCTL0 = CCIE;
+     /* Valor de comparação é 40000 ciclos*/
+     TA0CCR0 = 40000;
+
+     P2DIR = BIT2;
 
 }
 
+void init_adc(){
+
+    /* ADC10CTL0:
+       * ADC10SHT_2:  16 x ADC10CLKs
+       * ADC10ON   :  ADC10 On/Enable
+       * ADC10IE   :  IRQ Enable
+       */
+    ADC10CTL0 |= SREF1 + ADC10ON + ADC10IE;
+
+    /* ADC10CTL1:
+        * INCH_0: Selects Channel 0
+    */
+    ADC10CTL1 = INCH_0;
+
+    /*  P2.0 e P2.1 ADC option select */
+    ADC10AE0 = BIT0 | BIT1;
+
+    /* ADC10 Enable and start conversion */
+    ADC10CTL0 |= ENC + ADC10SC;
+}
 
 int main (void)
 {
-    char string[8];
+    char string[16];
 
     /* Desliga Watchdog */
     WDTCTL = WDTPW + WDTHOLD;
@@ -128,7 +123,7 @@ int main (void)
     /* Sistema de clock */
     init_clock_system();
     init_adc();
-    config_timerA_0();
+    timerA_init();
 
     /* Pino de debpuração */
     SET_BIT(P1DIR,BIT6);
@@ -147,18 +142,37 @@ int main (void)
         __bis_SR_register(CPUOFF + GIE);
 
         /* Remove caracteres antigos do LCD */
-        if (adc_val < 1000)
+        if (adc_val_0 < 1000)
             lcd_send_data(' ', LCD_DATA);
-        if (adc_val < 1000)
+        if (adc_val_0 < 1000)
             lcd_send_data(' ', LCD_DATA);
-        if (adc_val < 10)
+        if (adc_val_0 < 10)
             lcd_send_data(' ', LCD_DATA);
 
         lcd_send_data(LCD_LINE_0, LCD_CMD);
-        snprintf(string, 8, "%d", adc_val);
+        snprintf(string, 16, "%d %d", adc_val_0, adc_val_1);
 
         lcd_write_string(string);
     }
+}
+
+/* ISR0 do Timer A: executado no evento de comparação  comparador 0 (TACCR0) */
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void TIMER0_A0_ISR (void)
+#elif defined(__GNUC__)
+void __attribute__ ((interrupt(TIMER0_A0_VECTOR))) Timer_A (void)
+#else
+#error Compiler not supported!
+#endif
+{
+    CPL_BIT(P1OUT,BIT6);
+
+    /* Trigger por software pelo timer.
+     * Bug no Proteus
+     */
+    ADC10CTL0 |= ENC + ADC10SC;
+
 }
 
 /* ISR do ADC10. Executada quando a conversão terminar */
@@ -171,10 +185,26 @@ void __attribute__ ((interrupt(ADC10_VECTOR))) ADC10_ISR (void)
 #error Compiler not supported!
 #endif
 {
-    adc_val = ADC10MEM;
+    static uint8_t canal = 0;
+
+    /* Mux dos canais */
+    switch (canal){
+    case 0:
+        adc_val_0 = ADC10MEM;
+        ADC10CTL1 = INCH_1;
+        break;
+
+    case 1:
+        adc_val_1 = ADC10MEM;
+        ADC10CTL1 = INCH_0;
+        break;
+    }
+
+    canal++;
+    canal &= 0x1;
 
     /* Complementa P1.6 para ver velocidade do ADC */
-    CPL_BIT(P1OUT,BIT6);
+    CPL_BIT(P1OUT,BIT7);
 
     __bic_SR_register_on_exit(CPUOFF);
 }
