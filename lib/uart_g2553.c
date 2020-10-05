@@ -209,6 +209,7 @@ void __attribute__ ((interrupt(USCIAB0TX_VECTOR))) USCI0TX_ISR (void)
             /* Limpa flag de final de transmissão pois não há
              * mais nada a enviar          */
             IFG2 &= ~(UCA0TXIFG);
+            __bic_SR_register_on_exit(CPUOFF);
         }
 
     }

@@ -121,6 +121,8 @@ int main(){
         /* Envia resposta */
         uart_send_package((uint8_t *)message,sizeof(message));
 
+        __bis_SR_register(CPUOFF | GIE);
+
         /* Pisca LED para sinalizar que dados chegaram */
         CPL_BIT(P1OUT,BIT0);
     }

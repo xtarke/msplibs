@@ -25,6 +25,11 @@ mspdebug -n rf2500 "prog ./Debug/msplibs.out"
 https://dlbeer.co.nz/mspdebug/
 
 
+##  Launchpad G2553
+
+	- Inverter os jumpers Rx e TX no kit para receber/enviar comandos pela UART e computador.
+
+
 ## Simulação com Proteus (v8.9)
 
 Validação dos periféricos e lista de problemas da simulação. Exemplos estão disponíveis no [diretório ./sim](./sim/)
