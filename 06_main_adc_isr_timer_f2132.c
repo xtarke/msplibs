@@ -166,12 +166,19 @@ void __attribute__ ((interrupt(TIMER0_A0_VECTOR))) Timer_A (void)
 #error Compiler not supported!
 #endif
 {
-    CPL_BIT(P1OUT,BIT6);
+    //CPL_BIT(P1OUT,BIT6);
 
     /* Trigger por software pelo timer.
      * Bug no Proteus
      */
     ADC10CTL0 |= ENC + ADC10SC;
+
+
+    if ((adc_val_0 < 100 ) || (adc_val_1 < 100))
+        SET_BIT(P1OUT,BIT6);
+    else
+        CLR_BIT(P1OUT,BIT6);
+
 
 }
 
@@ -187,15 +194,18 @@ void __attribute__ ((interrupt(ADC10_VECTOR))) ADC10_ISR (void)
 {
     static uint8_t canal = 0;
 
+    volatile uint16_t adc = ADC10MEM;
+
+
     /* Mux dos canais */
     switch (canal){
     case 0:
-        adc_val_0 = ADC10MEM;
+        adc_val_0 = adc_val_1;
         ADC10CTL1 = INCH_1;
         break;
 
     case 1:
-        adc_val_1 = ADC10MEM;
+        adc_val_1 = adc;
         ADC10CTL1 = INCH_0;
         break;
     }

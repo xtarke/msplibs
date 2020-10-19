@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 36)
+    (drawings 35)
     (tracks 641)
     (zones 0)
     (modules 45)
@@ -2146,18 +2146,6 @@
   )
   (gr_line (start 109.7153 126.3396) (end 168.3766 126.3396) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 168.3766 126.3396) (end 168.3766 75.1078) (layer Edge.Cuts) (width 0.15))
-  (dimension 57.023 (width 0.3) (layer F.SilkS)
-    (gr_text "57.023 mm" (at 139.5095 132.91) (layer F.SilkS)
-      (effects (font (size 1.5 1.5) (thickness 0.3)))
-    )
-    (feature1 (pts (xy 168.021 126.365) (xy 168.021 131.396421)))
-    (feature2 (pts (xy 110.998 126.365) (xy 110.998 131.396421)))
-    (crossbar (pts (xy 110.998 130.81) (xy 168.021 130.81)))
-    (arrow1a (pts (xy 168.021 130.81) (xy 166.894496 131.396421)))
-    (arrow1b (pts (xy 168.021 130.81) (xy 166.894496 130.223579)))
-    (arrow2a (pts (xy 110.998 130.81) (xy 112.124504 131.396421)))
-    (arrow2b (pts (xy 110.998 130.81) (xy 112.124504 130.223579)))
-  )
   (gr_line (start 109.7153 75.1078) (end 109.7153 126.3396) (angle 90) (layer Edge.Cuts) (width 0.15))
 
   (via (at 109.718 126.345) (size 1.5) (drill 0.6) (layers F.Cu B.Cu) (net 0))
