@@ -8,7 +8,7 @@
 
 #include <msp430.h>
 
-#define LED   BIT3
+#define LED   BIT0
 #define DELAY 5000
 
 int main(void)
@@ -23,12 +23,12 @@ int main(void)
     PM5CTL0 &= ~LOCKLPM5;
 #endif
 
-    P2DIR = LED;
+    P1DIR = LED;
 
     /* main não pode retornar */
     while(1){
         /* Liga/Desliga LED */
-        P2OUT = P2OUT ^ LED;
+        P1OUT = P1OUT ^ LED;
 
         /* Atraso */
         for (i=DELAY;i--; i > 0);
