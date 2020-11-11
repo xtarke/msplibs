@@ -2,8 +2,8 @@
 
   (general
     (thickness 1.6)
-    (drawings 35)
-    (tracks 661)
+    (drawings 37)
+    (tracks 663)
     (zones 0)
     (modules 46)
     (nets 50)
@@ -2073,6 +2073,8 @@
     )
   )
 
+  (target plus (at 168.3766 126.3396) (size 5) (width 0.15) (layer Edge.Cuts))
+  (target plus (at 168.3766 75.1078) (size 5) (width 0.15) (layer Edge.Cuts))
   (target plus (at 109.718 126.335) (size 2) (width 0.15) (layer Edge.Cuts))
   (target plus (at 113.823928 101.726685) (size 2) (width 0.15) (layer Edge.Cuts))
   (target plus (at 167.061621 101.72611) (size 2) (width 0.15) (layer Edge.Cuts))
@@ -2194,6 +2196,8 @@
 
   (via (at 109.718 126.345) (size 1.5) (drill 0.6) (layers F.Cu B.Cu) (net 0))
   (via (at 109.71784 75.1078) (size 1.8) (drill 0.6) (layers F.Cu B.Cu) (net 0))
+  (via (at 168.38168 75.11288) (size 1.8) (drill 0.6) (layers F.Cu B.Cu) (net 0))
+  (via (at 168.38168 126.34468) (size 1.8) (drill 0.6) (layers F.Cu B.Cu) (net 0))
   (segment (start 131.6072 119.9248) (end 132.08 119.452) (width 0.508) (layer F.Cu) (net 1))
   (segment (start 130.0992 119.9248) (end 131.6072 119.9248) (width 0.7) (layer F.Cu) (net 1))
   (via (at 132.08 119.452) (size 1.5) (drill 0.6) (layers F.Cu B.Cu) (net 1))
