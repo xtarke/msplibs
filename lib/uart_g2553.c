@@ -16,7 +16,7 @@
  *           |                 |
  *           |    P1.2/UCA0TXD | --> TX
  *           |                 |
- *           |    P1.1/UCA0RXD | <-- RX
+ *           |    P1.1/UCA0RXD | <-- RXhttp://www.suzukicycles.com/Product%20Lines/Cycles/Products/V-STROM%201050/2020/DL1050XA.aspx
  *           |                 |
  */
 

@@ -31,7 +31,7 @@ int main(void)
         P1OUT = P1OUT ^ LED;
 
         /* Atraso */
-        for (i=DELAY i > 0; i--);
+        for (i=DELAY; i > 0; i--);
     }
 
     return 0;

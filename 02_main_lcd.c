@@ -30,7 +30,7 @@ void main(){
     lcd_init_4bits();
     /* Escreve string */
 
-    lcd_send_data(LCD_LINE_1, LCD_CMD);
+    lcd_send_data(LCD_LINE_1+4, LCD_CMD);
     lcd_write_string("MSP430");
 
     _delay_cycles(100000);

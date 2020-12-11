@@ -56,7 +56,7 @@ void lcd_init_4bits()
 #endif
 
     enable_pulse();
-    __delay_cycles(10000);
+    __delay_cycles(100000);
     enable_pulse();
     __delay_cycles(100000);
     enable_pulse();
