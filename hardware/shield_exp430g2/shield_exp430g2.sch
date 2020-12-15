@@ -328,8 +328,6 @@ F 3 "~" H 6600 2000 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	6300 2050 6300 2000
-Wire Wire Line
 	6300 2000 6400 2000
 $Comp
 L Connector:Conn_01x02_Male J23
@@ -441,13 +439,13 @@ Wire Wire Line
 $Comp
 L Connector_Generic:Conn_02x13_Odd_Even J9
 U 1 1 5EE18C86
-P 1400 1550
-F 0 "J9" H 1450 2367 50  0000 C CNN
-F 1 "Conn_02x13_Odd_Even" H 1450 2276 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_2x13_P2.54mm_Vertical" H 1400 1550 50  0001 C CNN
-F 3 "~" H 1400 1550 50  0001 C CNN
-	1    1400 1550
-	1    0    0    -1  
+P 1500 1550
+F 0 "J9" H 1550 2367 50  0000 C CNN
+F 1 "Conn_02x13_Odd_Even" H 1550 2276 50  0000 C CNN
+F 2 "Connector_IDC:IDC-Header_2x13_P2.54mm_Vertical" H 1500 1550 50  0001 C CNN
+F 3 "~" H 1500 1550 50  0001 C CNN
+	1    1500 1550
+	-1   0    0    -1  
 $EndComp
 Text GLabel 2150 950  2    50   Input ~ 0
 D0
@@ -565,19 +563,8 @@ Wire Wire Line
 	1700 1250 2150 1250
 Wire Wire Line
 	2150 1150 1700 1150
-$Comp
-L power:GND #PWR02
-U 1 1 5EEDDC4D
-P 6300 2050
-F 0 "#PWR02" H 6300 1800 50  0001 C CNN
-F 1 "GND" H 6300 1900 50  0000 C CNN
-F 2 "" H 6300 2050 50  0000 C CNN
-F 3 "" H 6300 2050 50  0000 C CNN
-	1    6300 2050
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	6200 1900 6400 1900
+	6200 1900 6300 1900
 Text GLabel 7200 1900 0    50   Input ~ 0
 AMP2
 $Comp
@@ -1522,4 +1509,9 @@ Wire Wire Line
 	2350 3000 2500 3000
 Wire Wire Line
 	2500 3000 2500 2850
+Wire Wire Line
+	6300 2000 6300 1900
+Connection ~ 6300 1900
+Wire Wire Line
+	6300 1900 6400 1900
 $EndSCHEMATC
