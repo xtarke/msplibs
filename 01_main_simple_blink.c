@@ -7,13 +7,14 @@
  */
 
 #include <msp430.h>
+#include <stdint.h>
 
 #define LED   BIT0
-#define DELAY 5000
+#define DELAY 10000
 
 int main(void)
 {
-    int i;
+    int16_t i;
 
     /* Desabilita Watch dog */
     WDTCTL = WDTPW | WDTHOLD;

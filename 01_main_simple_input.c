@@ -8,14 +8,9 @@
 
 #include <msp430.h>
 
-#define LED   BIT3
-#define DELAY 5000
-
 int main(void)
 {
-    int i;
-
-    /* Desabilita Watch dog */
+       /* Desabilita Watch dog */
     WDTCTL = WDTPW | WDTHOLD;
 
 #if defined (__MSP430FR2355__)

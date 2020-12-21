@@ -8,11 +8,11 @@
 
 #include <msp430.h>
 
-#define DELAY 5000
+#define DELAY 10000
 
 int main(void)
 {
-    int i;
+    int16_t i;
 
     /* Desabilita Watch dog */
     WDTCTL = WDTPW | WDTHOLD;
@@ -34,7 +34,7 @@ int main(void)
         P3OUT = P3OUT ^ 0xff;
 
         /* Atraso */
-        for (i=DELAY;i--; i > 0);
+        for (i=DELAY; i > 0; i--);
     }
 
     return 0;
