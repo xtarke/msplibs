@@ -7,6 +7,7 @@
  */
 
 #include <msp430.h>
+#include <stdint.h>
 
 #define DELAY 10000
 
