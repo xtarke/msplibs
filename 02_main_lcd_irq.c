@@ -52,6 +52,8 @@ void main(){
     lcd_init_4bits();
     /* Escreve string */
 
+    x = PIN15;
+
     /* Configura interupções */
     config_ext_irq();
 
