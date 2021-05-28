@@ -12,6 +12,6 @@
 
 ![Hex utility](hex_3.png)
 
-4. Especificar o programa hex no Proteus:
+4. Especificar o programa hex no Proteus em **Program File**:
 
 ![Hex utility](hex_4.png)
