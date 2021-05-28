@@ -122,8 +122,8 @@ void init_adc(){
 
     /* Configure reference interna  */
     PMMCTL0_H = PMMPW_H;                                        // Unlock the PMM registers
-   PMMCTL2 |= INTREFEN;                                        // Enable internal reference
-   __delay_cycles(400);                                        // Delay for reference settling
+    PMMCTL2 |= INTREFEN;                                        // Enable internal reference
+    __delay_cycles(400);                                        // Delay for reference settling
 
     /* Enable ADC */
     ADCCTL0 |= ADCENC;

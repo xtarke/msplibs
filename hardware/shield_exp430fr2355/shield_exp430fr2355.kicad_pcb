@@ -62,7 +62,7 @@
     (aux_axis_origin 171.1 172.9)
     (visible_elements 7FFFFFFF)
     (pcbplotparams
-      (layerselection 0x01030_ffffffff)
+      (layerselection 0x000c0_7ffffffe)
       (usegerberextensions true)
       (usegerberattributes false)
       (usegerberadvancedattributes false)
@@ -87,7 +87,7 @@
       (mirror false)
       (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "fabric/"))
+      (outputdirectory "../../../../../Templates/mask_fr2355/"))
   )
 
   (net 0 "")
@@ -3021,7 +3021,7 @@
   (segment (start 197.3092 129.0193) (end 198.3162 128.0123) (width 0.7) (layer B.Cu) (net 66))
   (segment (start 197.3092 129.0447) (end 197.3092 129.0193) (width 0.508) (layer B.Cu) (net 66))
 
-  (zone (net 1) (net_name GND) (layer B.Cu) (tstamp 604133A4) (hatch edge 0.508)
+  (zone (net 1) (net_name GND) (layer B.Cu) (tstamp 604935C2) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 16) (thermal_gap 0.508) (thermal_bridge_width 0.508))
@@ -3473,7 +3473,7 @@
       )
     )
   )
-  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 604133A1) (hatch edge 0.508)
+  (zone (net 1) (net_name GND) (layer F.Cu) (tstamp 604935BF) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 16) (thermal_gap 0.508) (thermal_bridge_width 0.508))

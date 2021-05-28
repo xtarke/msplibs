@@ -157,7 +157,7 @@ void __attribute__ ((interrupt(USCI_A1_VECTOR))) USCI_A1_ISR (void)
                 uart_status.receive_size--;
 
                 /* Se todos os dados foram recebidos,
-                 * acorda main e deslia recepção */
+                 * acorda main e desliga recepção */
                 if (uart_status.receive_size == 0){
                     uart_status.receive_busy = 0;
                     __bic_SR_register_on_exit(CPUOFF);

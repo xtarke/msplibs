@@ -66,7 +66,7 @@
     (aux_axis_origin 109.71 128.1)
     (visible_elements FFFFFF7F)
     (pcbplotparams
-      (layerselection 0x01030_ffffffff)
+      (layerselection 0x000c0_7ffffffe)
       (usegerberextensions false)
       (usegerberattributes false)
       (usegerberadvancedattributes false)
@@ -91,7 +91,7 @@
       (mirror false)
       (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "fabric/"))
+      (outputdirectory "../../../../../Templates/"))
   )
 
   (net 0 "")
@@ -2837,7 +2837,7 @@
   (segment (start 123.416199 112.101808) (end 123.416199 105.3592) (width 0.7) (layer F.Cu) (net 48))
   (segment (start 123.416199 113.3746) (end 123.416199 112.101808) (width 0.7) (layer F.Cu) (net 48))
 
-  (zone (net 2) (net_name GND) (layer B.Cu) (tstamp 604144D1) (hatch edge 0.508)
+  (zone (net 2) (net_name GND) (layer B.Cu) (tstamp 604936DE) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 16) (thermal_gap 0.508) (thermal_bridge_width 0.508))
@@ -3315,7 +3315,7 @@
       )
     )
   )
-  (zone (net 2) (net_name GND) (layer F.Cu) (tstamp 604144CE) (hatch edge 0.508)
+  (zone (net 2) (net_name GND) (layer F.Cu) (tstamp 604936DB) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 16) (thermal_gap 0.508) (thermal_bridge_width 0.508))
