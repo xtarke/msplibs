@@ -7,7 +7,7 @@
  *
  *      - Aplicação que verifica e reporta seguidores
  *      conectados no barramento I2C.
- *      - Varre os endereços de 127 a 1. Para e ascende
+ *      - Varre os endereços de 127 a 1. Pára e acende
  *      o LED P1.0 quando encontra o primeiro seguidor I2C.
  *      - Se usado Analizador "Logic", lembrar que o endereço
  *      deve ser divido por 2, >> 1, pois são 7 bits.

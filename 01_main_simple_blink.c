@@ -10,7 +10,7 @@
 #include <stdint.h>
 
 #define LED   BIT0
-#define DELAY 10000
+#define DELAY 100000
 
 int main(void)
 {
@@ -32,7 +32,7 @@ int main(void)
         P1OUT = P1OUT ^ LED;
 
         /* Atraso */
-        for (i=DELAY; i > 0; i--);
+        __delay_cycles(DELAY);
     }
 
     return 0;
