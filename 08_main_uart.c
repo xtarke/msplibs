@@ -11,7 +11,7 @@
  *      - Uma mensagem de ACK é enviado quando um pacote
  *      é recebido.
  *
- *      - Clock da CPU é 1MHZ definido e uart.h  devido a
+ *      - Clock da CPU é definido e uart.h  devido a
  *      configuração do baudrate.
  *
  *      - VEJA uart.c/.h
@@ -96,7 +96,7 @@ void init_clock_system(){
 
 
 int main(){
-    const char message[] = "ACK";
+    const char message[] = "Juca";
     const char message_bin_data[] = { 65, 63, 87, 87};
 
     char my_data[8];

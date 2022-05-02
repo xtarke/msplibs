@@ -28,29 +28,42 @@ void display_mux_init() {
 }
 
 
-
+/* Função para escrever em múltiplos displays usando */
 void display_mux_write(uint8_t data){
 
+	/* Desliga todos os displays */
+
+	/* Escreve valor convertido do dígito 1 no GPIO */
+
+	/* Liga display 1 */
+
+	/* Mantém um tempo ligado:  */
+	_delay_cycles(10000);
+
+	/* Desliga display 1 */
+
+	/* Escreve valor convertido do dígito 2 no GPIO */
+
+	/* Liga display 2 */
+
+	/* Mantém um tempo ligado */
+	_delay_cycles(10000);}
+}
+
+/* Função para escrever em múltiplos displays usando for */
+
+void display_mux_write_for(uint8_t data){
     int8_t n = NUMBER_DISPLAYS;
 
     for (n=NUMBER_DISPLAYS; n > 0; n--){
         /* Desliga todos os displays */
 
-        /* Escreve valor convertido do dígito 1 no GPIO */
+        /* Escreve valor convertido do dígito n no GPIO */
 
-        /* Liga display 1 */
+        /* Liga display n */
 
         /* Mantém um tempo ligado:  */
         _delay_cycles(10000);
 
-        /* Desliga display 1 */
-
-        /* Escreve valor convertido do dígito 2 no GPIO */
-
-        /* Liga display 2 */
-
-        /* Mantém um tempo ligado */
-        _delay_cycles(10000);
     }
-
 }

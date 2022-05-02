@@ -14,8 +14,6 @@
 
 int main(void)
 {
-    int16_t i;
-
     /* Desabilita Watch dog */
     WDTCTL = WDTPW | WDTHOLD;
 
