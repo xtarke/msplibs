@@ -22,7 +22,7 @@
  *       +----------------------------------------->
  *
  *       - Comparadores podem ser configurados para qualquer valor
- *       entre 0 e 65535. IRQs devem ser habilitadas individuais
+ *       entre 0 e 65535. IRQs devem ser habilitadas individualmente
  *       nos respectivos registradores.
  *
  */

@@ -38,8 +38,15 @@ void init_clock_system(void) {
     __bis_SR_register(SCG0);                     // disable FLL
     CSCTL3 |= SELREF__XT1CLK;                    // Set XT1 as FLL reference source
     CSCTL0 = 0;                                  // clear DCO and MOD registers
+
+    /* Selecionar DCORSEL_xyz de acordo com a máxima frequência da CPU */
     CSCTL1 = DCORSEL_7;                          // Set DCO = 24MHz
-    CSCTL2 = FLLD_0 + 731;                       // DCOCLKDIV = 327358*731 / 1
+
+    /* Ajustar o multiplicador (ex. 731) para a frequência desejada *
+     *
+     * F = 32768*731 / 1  ---->   (32768 * n) / FLLD_x
+     */
+    CSCTL2 = FLLD_0 + 731;                       // DCOCLKDIV = 32768*731 / 1
     __delay_cycles(3);
     __bic_SR_register(SCG0);                     // enable FLL
     while(CSCTL7 & (FLLUNLOCK0 | FLLUNLOCK1));   // FLL locked
