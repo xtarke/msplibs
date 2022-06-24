@@ -5,11 +5,14 @@
  *      Author: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  *
- *      Exemplo de debouce de botão por pooling.
+ *      Exemplo de debouce de botão por contagem.
  *      Faz a verificação de botão periodicamente utilizando
  *      o comparador 0 do Timer A0
- *      Período do pooling deve ser maior que o tempo de
- *      instabilidade da chave.
+ *
+ *      Recomenda-se que o período de amostragem esteja entre 1 a 10ms
+ *      com N=12 amostras para deteção do botão. Ajustar os tempos conforme
+ *      necessário.
+ *
  *
  *       .
  *      /|\                  +
