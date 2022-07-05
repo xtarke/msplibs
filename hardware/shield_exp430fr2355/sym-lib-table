@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name boosterpack)(type Legacy)(uri ${KIPRJMOD}/boosterpack.lib)(options "")(descr ""))
-)
