@@ -18,7 +18,7 @@
  *           |                 |
  *           |       P2.0/TB1.1| <-- Sensor/botão
  *           |                 |
- *           |       P2.1/TB1.2| <-- Sensor/botão
+ *           |                 |
  *           |                 |
  */
 
@@ -122,13 +122,11 @@ void main(void)
     P1DIR = 1;
 
     /* Pull ups */
-    P2REN = BIT0 | BIT1;
-    P2OUT = BIT0 | BIT1;
+    P2REN = BIT0;
+    P2OUT = BIT0;
 
     /* Input capture for P2.0 */
-    P2SEL0 = 0x1;
-    /* Input capture for P2.1 */
-    P2SEL1 = 0x1;
+    P2SEL0 = BIT0;
 
     __bis_SR_register(GIE);
 
@@ -154,7 +152,8 @@ void __attribute__ ((interrupt(TIMER1_B0_VECTOR))) TIMER1_B0_ISR (void)
     uint16_t timer_count_0 = 0;
     uint16_t timer_count_1 = 0;
 
-    TB1CCTL0 &= ~CCIFG;
+    /* Limpar flag do entrada por captura */
+    TB1CCTL1 &= ~CCIFG;
 
 
     /* ToDo: validar P2IN para detecção da borda */

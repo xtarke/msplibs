@@ -123,7 +123,7 @@ void uart_receive_package(uint8_t *data, uint8_t size){
     /* Serializa a transmissão de vários pacotes */
     while (uart_status.receive_busy != 0);
 
-    /* Condições de estado */
+    /*r Condições de estado */
     uart_status.data_to_receive = data;
     uart_status.receive_size = size;
     uart_status.receive_busy = 1;
