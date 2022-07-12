@@ -61,7 +61,11 @@ void init_uart(){
      */
     P4SEL0 = BIT2 | BIT3;
 
-#ifdef CLOCK_24MHz
+#ifndef CLOCK_24MHz
+#error "Clock system not defined for UART support"
+#endif
+
+#ifdef BAUD_RATE_115200
     UCA1CTLW0 |= UCSWRST;
     /* Fonte de clock SMCLK */
     UCA1CTLW0 |= UCSSEL_2;
@@ -70,8 +74,17 @@ void init_uart(){
     UCA1BR0 = 13;
     UCA1BR1 = 0;
     UCA1MCTLW = 0x2500 | UCOS16;
-#else
-#error "Clock system not defined for UART support"
+#endif
+
+#ifdef BAUD_RATE_9600
+    UCA1CTLW0 |= UCSWRST;
+    /* Fonte de clock ACLK = 32768 */
+    UCA1CTLW0 |= UCSSEL_1;
+
+    /* Veja http://software-dl.ti.com/msp430/msp430_public_sw/mcu/msp430/MSP430BaudRateConverter/index.html */
+    UCA1BR0 = 3;
+    UCA1BR1 = 0;
+    UCA1MCTLW = 0x9200;
 #endif
 
     /* Initicialização do eUSCI */
@@ -145,46 +158,46 @@ void __attribute__ ((interrupt(USCI_A1_VECTOR))) USCI_A1_ISR (void)
 
     switch(__even_in_range(UCA1IV,USCI_UART_UCTXCPTIFG))
     {
-        case USCI_NONE:
-            break;
-        case USCI_UART_UCRXIFG:     /* Received IRQ */
-            data = UCA1RXBUF;
+    case USCI_NONE:
+        break;
+    case USCI_UART_UCRXIFG:     /* Received IRQ */
+        data = UCA1RXBUF;
 
-            if (uart_status.receive_busy)
-            {
-                /* Guarda dados */
-                *(uart_status.data_to_receive++) = data;
-                uart_status.receive_size--;
+        if (uart_status.receive_busy)
+        {
+            /* Guarda dados */
+            *(uart_status.data_to_receive++) = data;
+            uart_status.receive_size--;
 
-                /* Se todos os dados foram recebidos,
-                 * acorda main e desliga recepção */
-                if (uart_status.receive_size == 0){
-                    uart_status.receive_busy = 0;
-                    __bic_SR_register_on_exit(CPUOFF);
-                }
-            }
-            break;
-
-        case USCI_UART_UCTXIFG:     /* Transmit IRQ */
-            if (uart_status.send_size != 0){
-                UCA1TXBUF = *(++uart_status.data_to_send);
-                uart_status.send_size--;
-            }
-            else {
-                /* Condições de término de envio de pacote */
-                /* Desbloqueia serialização de pacotes */
-                uart_status.send_busy = 0;
-                /* Limpa flag de final de transmissão pois não há
-                 * mais nada a enviar          */
+            /* Se todos os dados foram recebidos,
+             * acorda main e desliga recepção */
+            if (uart_status.receive_size == 0){
+                uart_status.receive_busy = 0;
                 __bic_SR_register_on_exit(CPUOFF);
             }
-            break;
-
-        case USCI_UART_UCSTTIFG:    /*  START byte received interrupt. */
-            break;
-        case USCI_UART_UCTXCPTIFG:  /* Transmit complete interrupt. */
-            break;
-
-        default: break;
         }
+        break;
+
+    case USCI_UART_UCTXIFG:     /* Transmit IRQ */
+        if (uart_status.send_size != 0){
+            UCA1TXBUF = *(++uart_status.data_to_send);
+            uart_status.send_size--;
+        }
+        else {
+            /* Condições de término de envio de pacote */
+            /* Desbloqueia serialização de pacotes */
+            uart_status.send_busy = 0;
+            /* Limpa flag de final de transmissão pois não há
+             * mais nada a enviar          */
+            __bic_SR_register_on_exit(CPUOFF);
+        }
+        break;
+
+    case USCI_UART_UCSTTIFG:    /*  START byte received interrupt. */
+        break;
+    case USCI_UART_UCTXCPTIFG:  /* Transmit complete interrupt. */
+        break;
+
+    default: break;
+    }
 }

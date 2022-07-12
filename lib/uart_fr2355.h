@@ -12,6 +12,8 @@
 #include <stdint.h>
 
 #define CLOCK_24MHz
+//#define BAUD_RATE_115200
+#define BAUD_RATE_9600
 
 void init_uart();
 void uart_send_package(uint8_t *data, uint8_t size);
