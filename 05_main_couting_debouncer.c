@@ -31,7 +31,19 @@
  *       entre 0 e 65535. IRQs devem ser habilitadas individuais
  *       nos respectivos registradores.
  *
+ *
+ *                  MSP430G25553
+ *               -----------------
+ *           /|\|              XIN|-
+ *            | |                 |
+ *            --|RST          XOUT|-
+ *              |                 |
+ *  BOTAO   --> | P1.3    P1.0    | --> LED VERMELHO
+ *              |         P1.6    | --> LED VERDE
+ *              |                 |
+ *
  */
+
 
 #ifndef __MSP430G2553__
     #error "Clock system not supported for this device"
@@ -49,7 +61,8 @@
 #define BUTTON BIT3
 
 #define LED_PORT P1
-#define LED BIT0
+#define LED_VM BIT0
+#define LED_VD BIT6
 
 #define BUTTON_SAMPLES (12)
 
@@ -109,24 +122,22 @@ int main(void)
     /* Desliga watchdog imediatamente */
     WDTCTL = WDTPW | WDTHOLD;
 
-    /* Configura botões */
-    /* BUTTON_PORT totalmente como entrada */
-    PORT_DIR(BUTTON_PORT) = LED | BIT6;
-    /* Resistores de pull up */
+    /* Configura botões e LEDs*/
+    /* LEDs como saída (nível alto). Botão como entrada (nível baixo) */
+    PORT_DIR(BUTTON_PORT) = LED_VM | LED_VD;
+    /* Ativação dos Resistores */
     PORT_REN(BUTTON_PORT) = BUTTON;
+    /* Resistor de pull up */
     PORT_OUT(BUTTON_PORT) = BUTTON;
 
     /* Configurações de hardware */
     config_timerA_0();
     init_clock_system();
 
-    /* Inicializa displays */
-
     /* Entra em modo de economia de energia com IRQs habilitadas */
     __bis_SR_register(LPM0_bits + GIE);
 
     while (1){
-
 
 
         /* Desligar CPU novamente */
@@ -137,8 +148,9 @@ int main(void)
 
 /* ISR0 do Timer A: executado no evento de comparação  comparador 0 (TACCR0)
  *
- * Utilizado para o debouncer por amostragem: faz a verificação de botão
- * periodicamente.
+ * Utilizado para o debouncer por contagem: faz a verificação de botão
+ * periodicamente. Caso N amostras são estáveis, detecta-se que o botão foi
+ * pressionado.
  *
  * */
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
@@ -153,7 +165,7 @@ void __attribute__ ((interrupt(TIMER0_A0_VECTOR))) Timer_A (void)
     static uint8_t counter = BUTTON_SAMPLES;
 
     /* Debug: Piscar quando executar a ISR */
-    CPL_BIT(P1OUT, BIT6);
+    CPL_BIT(PORT_OUT(LED_PORT), LED_VD);
 
     /* Se botão apertado: borda de descida */
     if (!TST_BIT(PORT_IN(BUTTON_PORT), BUTTON))  {
@@ -165,7 +177,7 @@ void __attribute__ ((interrupt(TIMER0_A0_VECTOR))) Timer_A (void)
             /* Acorda função main
             __bic_SR_register_on_exit(LPM0_bits); */
 
-            CPL_BIT(PORT_OUT(LED_PORT), LED);
+            CPL_BIT(PORT_OUT(LED_PORT), LED_VM);
 
         }
     }

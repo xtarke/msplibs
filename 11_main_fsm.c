@@ -3,6 +3,21 @@
  *
  *  Created on: Nov 7, 2022
  *      Author: Renan Augusto Starke
+ *
+ *      Um semáforo para exemplificar a implementação de FSM.
+ *      WatchDog timer é utilizado como a base de tempo de 1 segundo
+ *
+ *
+ *                  MSP430F5529LP
+ *               -----------------
+ *           /|\|              XIN|-
+ *            | |                 |
+ *            --|RST          XOUT|-
+ *              |                 |
+ *  BOTAO   --> | P1.1    P1.0    | --> LED VERMELHO
+ *              |         P4.7    | --> LED VERDE
+ *              |                 | --> Estado amarelo liga Vermelho e verde
+ *
  */
 
 

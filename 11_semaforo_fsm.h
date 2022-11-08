@@ -1,8 +1,8 @@
 /*
  * fsm.h
  *
- *  Created on: May 13, 2020
- *      Author: xtarke
+ *  Created on: Nov 7, 2022
+ *      Author: Renan Augusto Starke
  */
 
 #ifndef APPS_FSM_FSM_H_
