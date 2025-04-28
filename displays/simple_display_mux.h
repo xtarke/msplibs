@@ -37,6 +37,17 @@ void watchdog_display_mux_init();
   *
   * @retval Nenhum.
   */
-void watchdog_display_mux_write(uint8_t data);
+void display_mux_write(uint8_t data);
+
+
+/**
+  * @brief  Escrevre nos displays de 7 segmentos usando um laço for.
+  * @param  data: valor sem decimal sem conversão. Dados
+  *             são convertidos internamente. data
+  *             deve ser maior caso mais de dois displays.
+  *
+  * @retval Nenhum.
+  */
+void display_mux_write_for(uint8_t data);
 
 #endif /* DISPLAY_LEDDISPLAY_H_ */

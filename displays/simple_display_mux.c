@@ -47,15 +47,15 @@ void display_mux_write(uint8_t data){
 	/* Liga display 2 */
 
 	/* Mantém um tempo ligado */
-	_delay_cycles(10000);}
+	_delay_cycles(10000);
 }
 
 /* Função para escrever em múltiplos displays usando for */
 
 void display_mux_write_for(uint8_t data){
-    int8_t n = NUMBER_DISPLAYS;
+    int8_t n = 0;
 
-    for (n=NUMBER_DISPLAYS; n > 0; n--){
+    for (n=0; n < NUMBER_DISPLAYS; n--){
         /* Desliga todos os displays */
 
         /* Escreve valor convertido do dígito n no GPIO */
