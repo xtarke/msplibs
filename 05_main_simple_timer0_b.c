@@ -71,6 +71,11 @@ int main(void)
     /* Desliga watchdog imediatamente */
     WDTCTL = WDTPW | WDTHOLD;
 
+#if defined (__MSP430FR2355__)
+    /* Disable the GPIO power-on default high-impedance mode */
+    PM5CTL0 &= ~LOCKLPM5;
+#endif
+
     /* Configurações de hardware */
     config_timerB_0();
 
