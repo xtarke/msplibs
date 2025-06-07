@@ -53,10 +53,9 @@
 void config_timerB_0_as_pwm(){
     /* Timer A0:
      *
-     * TBSSEL_2 -> Clock de SMCLK.
+     * TBSSEL_2 -> Clock de SMCLK (clock da CPU: 1MHz se não alterado).
      * MC_1 -> Contagem crescente até CCR0
-     * TBIE -> Habilitação de IRQ.
-     * ID_3 -> Prescaler = /8
+     * ID_0 -> Prescaler = /1
      */
     TB0CTL = TBSSEL_2 | MC_1 | ID_0;
 
