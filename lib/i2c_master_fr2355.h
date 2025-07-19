@@ -6,8 +6,8 @@
  *      Instituto Federal de Santa Catarina
  */
 
-#ifndef LIB_I2C_MASTER_G2553_H_
-#define LIB_I2C_MASTER_G2553_H_
+#ifndef LIB_I2C_MASTER_FR2355_H_
+#define LIB_I2C_MASTER_FR2355_H_
 
 #define CLOCK_24MHz
 
@@ -29,4 +29,4 @@ i2c_mode i2c_write_single_byte(uint8_t dev_addr, uint8_t byte);
 i2c_mode i2c_master_write_reg(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_data, uint8_t count);
 i2c_mode i2c_master_read_reg(uint8_t dev_addr, uint8_t reg_addr, uint8_t count, uint8_t *data);
 
-#endif /* LIB_I2C_MASTER_G2553_H_ */
+#endif /* LIB_I2C_MASTER_FR2355_H_ */

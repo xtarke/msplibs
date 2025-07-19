@@ -1,5 +1,5 @@
 /*
- *  i2c_master_g2553.c
+ *  i2c_master_fr2355.c
  *
  *  Created on: May 28, 2020
  *      Author: Renan Augusto Starke
@@ -51,10 +51,16 @@ struct i2c_status_t {
 /* Estado do módulo I2C */
 volatile struct i2c_status_t i2c_status = {0};
 
-void init_i2c_master_mode()
+void init_i2c_master_mode(int enable_internal_pull_up)
 {
-    /* Muda P1.6 e P1.7 para modo UCB0 */
+    /* Muda P1.2 e P1.3 para modo UCB0 */
     P1SEL0 |= BIT2 | BIT3;
+
+    if (enable_internal_pull_up) {
+        P1REN |= BIT2 | BIT3;
+        P1OUT |= BIT2 | BIT3;
+    }
+
 
     /* Mantém controlador em reset */
     UCB0CTLW0 |= UCSWRST;

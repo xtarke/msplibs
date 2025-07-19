@@ -91,7 +91,7 @@ int main(void) {
 #endif
 
     init_clock_system();
-    init_i2c_master_mode();
+    init_i2c_master_mode(0);
 
     /* Debug LED */
     P1DIR |= BIT0;
