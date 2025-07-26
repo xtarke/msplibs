@@ -1,7 +1,7 @@
 /*
- *  i2c_master_g2553.c
+ *  i2c_master_f247_g2xxx.c
  *
- *  Created on: May 28, 2020
+ *  Created on: May 01, 2024
  *      Author: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  *
@@ -12,7 +12,7 @@
  *
  *                          .   .
  *                         /|\ /|\
- *               CI_xyz    10k 10k     MSP430G2xx3
+ *               CI_xyz    10k 10k     MSP430F247
  *              -------     |   |   -------------------
  *             |    SDA|<  -|---+->|P1.7/UCB0SDA       |-
  *             |       |    |      |                   |
@@ -23,17 +23,15 @@
  *
  */
 /* System includes */
-#include <lib/uart_g2553.h>
+#include <lib/i2c_master_g2553.h>
 #include <msp430.h>
 #include <stdint.h>
 #include <stdlib.h>
 
 /* Project includes */
-#include "i2c_master_g2553.h"
 
-
-#ifndef __MSP430G2553__
-#error "Library no supported/validated in this device."
+#if !defined(__MSP430F247__) && !defined(__MSP430G2553__)
+    #error "Library no supported/validated in this device."
 #endif
 
 struct i2c_status_t {
@@ -57,8 +55,14 @@ volatile struct i2c_status_t i2c_status = {0};
 void init_i2c_master_mode()
 {
     /* Muda P1.6 e P1.7 para modo USCI_B0 */
+#if defined(__MSP430F247__)
+    P3SEL |= BIT1 + BIT2;
+#endif
+
+#if defined(__MSP430G2553__)
     P1SEL |= BIT6 + BIT7;
     P1SEL2|= BIT6 + BIT7;
+#endif
 
     /* Mantém controlador em reset */
     UCB0CTL1 |= UCSWRST;
@@ -69,6 +73,7 @@ void init_i2c_master_mode()
 
 #ifdef CLOCK_16MHz
     /* fSCL = SMCLK/160 = ~100kHz */
+   // UCB0BR0 = 80;
     UCB0BR0 = 160;
     UCB0BR1 = 0;
 #else
@@ -174,8 +179,7 @@ i2c_mode i2c_master_write_reg(uint8_t dev_addr, uint8_t reg_addr, uint8_t *reg_d
 
     UCB0CTL1 |= UCTR + UCTXSTT;             // I2C TX, start condition
 
-    //__bis_SR_register(CPUOFF + GIE);       / Enter LPM0 w/ interrupts: Use no hardware real
-    __bis_SR_register(GIE);                // Enable interrupts: Use no Proteus
+    __bis_SR_register(CPUOFF + GIE);        // Enter LPM0 w/ interrupts: Use no hardware real
 
     return i2c_status.state;
 }

@@ -10,7 +10,7 @@
 #include <stdint.h>
 
 #define LED   BIT0
-#define DELAY 100000
+#define DELAY 1000
 
 int main(void)
 {
