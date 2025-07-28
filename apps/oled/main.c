@@ -5,7 +5,9 @@
  *      Author: Renan Augusto Starke
  *      Instituto Federal de Santa Catarina
  *
- *      - OLED SDD1366 example application
+ *      - OLED SDD1366 aplicação exemplo.
+ *      - Portado do repositório:
+ *      - https://github.com/xtarke/msp430_thermo_hygrometer/tree/main
  *
  *           OLED SSD1306              MSP430G2553
  *             +-------+           +-------------------+
@@ -13,9 +15,8 @@
  *             |       |    |      |                   |
  *             |       |    |      |                   |
  *             |       |    |      |                   |
- *             |    SCL|<----+-----|P3.2/UCB0SCL   P2.0|
+ *             |    SCL|<----+-----|P3.2/UCB0SCL   P1.0| -> Led piscando
  *              -------            |                   |
- *
  */
 
 /* System includes */
@@ -35,13 +36,13 @@
 
 
 /**
-  * @brief  Configura sistema de clock para usar o Digitally Controlled Oscillator (DCO).
-  *         Utililiza-se as calibrações internas gravadas na flash.
-  *         Exemplo baseado na documentação da Texas: msp430g2xxx3_dco_calib.c  *
-  * @param  none
-  *
-  * @retval none
-  */
+ * @brief  Configura sistema de clock para usar o Digitally Controlled Oscillator (DCO).
+ *         Utililiza-se as calibrações internas gravadas na flash.
+ *         Exemplo baseado na documentação da Texas: msp430g2xxx3_dco_calib.c  *
+ * @param  none
+ *
+ * @retval none
+ */
 void init_clock_system(){
 
 #ifdef CLOCK_1MHz
@@ -92,12 +93,13 @@ void init_clock_system(){
 }
 
 /**
-  * @brief  Configura temporizador watchdog.
-  *
-  * @param  none
-  *
-  * @retval none
-  */
+ * @brief  Configura temporizador watchdog como interrupção temporizada.
+ *         Código no vetor __interrupt void watchdog_timer(void)
+ *
+ * @param  none
+ *
+ * @retval none
+ */
 void config_wd_as_timer(){
     /* Configura Watch dog como temporizador:
      *
@@ -116,7 +118,6 @@ void config_wd_as_timer(){
 
 
 int main(void) {
-    int i;
     /* Desliga Watchdog */
     WDTCTL = WDTPW | WDTHOLD;
 
@@ -128,29 +129,100 @@ int main(void) {
     P1DIR |= BIT0;
     SET_BIT(P1OUT,BIT0);
 
-    __bis_SR_register(LPM0_bits + GIE);
- 
+    /* Aguarda a energização do display */
+    __delay_cycles(160000);
+
+    /* Habilita todas as interrupções */
+    __bis_SR_register(GIE);
+
+    /* Inicializa o display */
     ssd1306_init();
 
-    ssd1306_draw_pixel(16,16,WHITE_PIXEL);
-    ssd1306_write_scaled_char(0,0, 'R',2);
-    ssd1306_write_scaled_char(16,0, ':',2);
-    ssd1306_write_scaled_char(0,24, 'b',2);
-    ssd1306_write_scaled_char(16,24, ':',2);
+    /* O display OLED necessita de 1024 bytes de frame buffer, *
+     * O MSP430G253 possui 512 bytes de RAM, portanto a display
+     * foi divido em 4 partes (linhas) de 256 bytes:
+     * Veja: oled_partition_t em SDD1306.h
+     */
 
-    ssd1306_display_data();
+    /* Escreve MSP na linha 1 */
+    /* Os pixels são desenhados em ram interna do MCU *
+     * e enviados para o display pela função
+     * ssd1306_display_data(oled_partition_t line)
+     */
+    /* Escreve MSP na linha 1: *
+     * a fonte é 16x16, logo cada caractere deve
+     * ter um offset de 16 pixels em x e y */
+    ssd1306_write_scaled_char(0,0, 'M',2);
+    ssd1306_write_scaled_char(16,0, 'S',2);
+    ssd1306_write_scaled_char(32,0, 'P',2);
+    ssd1306_display_data(LINE_1);
+
+    /* Escreve 430 na linha 2 */
+    ssd1306_write_scaled_char(0,0, '4',2);
+    ssd1306_write_scaled_char(16,0, '3',2);
+    ssd1306_write_scaled_char(32,0, '0',2);
+    ssd1306_display_data(LINE_2);
+
+    /* Escreve IFSC na linha 3 */
+    ssd1306_write_scaled_char(0,0, 'I',2);
+    ssd1306_write_scaled_char(16,0, 'F',2);
+    ssd1306_write_scaled_char(32,0, 'S',2);
+    ssd1306_write_scaled_char(48,0, 'C',2);
+    ssd1306_display_data(LINE_3);
+
+    /* Escreve DAELN na linha 4 */
+    ssd1306_write_scaled_char(0,0, 'D',2);
+    ssd1306_write_scaled_char(16,0, 'A',2);
+    ssd1306_write_scaled_char(32,0, 'E',2);
+    ssd1306_write_scaled_char(48,0, 'L',2);
+    ssd1306_write_scaled_char(64,0, 'N',2);
+    ssd1306_display_data(LINE_4);
+
+    uint16_t contador = 0;
 
     while (1){
+        /* Coloque aqui a sua aplicação
+         * exibindo dados dos sensores, botões, etc...
+         * Atualiza somente as variávies que são alteradas
+         * evitando excesso de transações no I2C.
+         *
+         * Exemplo: contador */
+        uint16_t temp = 0;
+        uint8_t digits[3];
 
-        ssd1306_display_data();
+        temp = contador;
 
+        /* Separa os digitos */
+        for (int i=2; i >= 0; i--){
+            digits[i] = temp % 10;
+            temp = temp / 10;
+        }
+
+        ssd1306_write_scaled_char(0,0, 'M',2);
+        ssd1306_write_scaled_char(16,0, 'S',2);
+        ssd1306_write_scaled_char(32,0, 'P',2);
+        ssd1306_write_scaled_char(48,0, ' ',2);
+        /* Envia cada dígito para o display */
+        ssd1306_write_scaled_char(64,0, '0' + digits[0],2);
+        ssd1306_write_scaled_char(80,0, '0' + digits[1],2);
+        ssd1306_write_scaled_char(96,0, '0' + digits[2],2);
+        ssd1306_display_data(LINE_1);
+
+        contador++;
+
+        /* Conta no máximo até 255 */
+        contador &= 0xff;
+
+        /* Desliga a CPU. Lembre-se de ligar com a instrução
+         * __bic_SR_register_on_exit(CPUOFF); em alguma interrupção,
+         * senão o main não executará */
         __bis_SR_register(LPM0_bits + GIE);        
     }
-    
+
 }
 
-
-/* ISR do watchdog: executado toda a vez que o temporizador estoura */
+/* ISR do watchdog: executado toda a vez que o temporizador estoura
+ * WDT é usado como temporizador normal */
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
 #pragma vector=WDT_VECTOR
 __interrupt void watchdog_timer(void)
@@ -162,14 +234,13 @@ void __attribute__ ((interrupt(WDT_VECTOR))) watchdog_timer (void)
 {
     static uint16_t x = 0;
 
+    /* Pisca o LED */
     PORT_OUT(LED_PORT) ^= LED;
 
-    __bic_SR_register_on_exit(CPUOFF);
-
-    if (x >= 10) {
-
+    /* Duas interrupções para acordar o main */
+    if (x >= 2) {
         x = 0;
-        //__bic_SR_register_on_exit(CPUOFF);
+        __bic_SR_register_on_exit(CPUOFF);
     }
     x++;
 }

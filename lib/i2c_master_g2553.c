@@ -12,7 +12,7 @@
  *
  *                          .   .
  *                         /|\ /|\
- *               CI_xyz    10k 10k     MSP430F247
+ *               CI_xyz    4k7 4k7     MSP430F247
  *              -------     |   |   -------------------
  *             |    SDA|<  -|---+->|P1.7/UCB0SDA       |-
  *             |       |    |      |                   |
@@ -62,6 +62,7 @@ void init_i2c_master_mode()
 #if defined(__MSP430G2553__)
     P1SEL |= BIT6 + BIT7;
     P1SEL2|= BIT6 + BIT7;
+    /* NÃO HABILITAR Resistores de pull up para o OLED */
 #endif
 
     /* Mantém controlador em reset */

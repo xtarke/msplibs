@@ -1,14 +1,14 @@
 /*
-* ssd1366.c
-*
-*  Created on: Mar 2, 2020
-*      Author: Renan Augusto Starke
-*      Instituto Federal de Santa Catarina *
-*
-*
-*      Definitions from: https://github.com/yanbe/ssd1306-esp-idf-i2c
-*
-*/
+ * ssd1366.c
+ *
+ *  Created on: Mar 2, 2020
+ *      Author: Renan Augusto Starke
+ *      Instituto Federal de Santa Catarina *
+ *
+ *
+ *      Definitions from: https://github.com/yanbe/ssd1306-esp-idf-i2c
+ *
+ */
 
 #ifndef SSD1366_H_
 #define SSD1366_H_
@@ -16,8 +16,18 @@
 #include <stdint.h>
 
 typedef enum  {
-  WHITE_PIXEL, BLACK_PIXEL
+    WHITE_PIXEL, BLACK_PIXEL
 } pixel_color_t;
+
+
+/* Quando não há RAM suficiente para o frame Buffer *
+ * asa-se 4 partições                               */
+typedef enum {
+    LINE_1 = 0,     /* First line PAGE_RANGE */
+    LINE_2 = 0x32,  /* Second line PAGE_RANGE */
+    LINE_3 = 0x64,  /* Third line PAGE_RANGE */
+    LINE_4 = 0x96   /* Fourth line PAGE_RANGE */
+} oled_partition_t;
 
 void ssd1306_init();
 
