@@ -131,6 +131,9 @@ int main(void) {
 
     /* Aguarda a energização do display */
     __delay_cycles(160000);
+    __delay_cycles(160000);
+    __delay_cycles(160000);
+    __delay_cycles(160000);
 
     /* Habilita todas as interrupções */
     __bis_SR_register(GIE);
