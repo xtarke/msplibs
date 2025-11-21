@@ -16,7 +16,7 @@
 #define BAUD_RATE_9600
 
 void init_uart();
-void uart_send_package(uint8_t *data, uint8_t size);
+void uart_send_package(uint8_t *data, uint8_t size, int wake_up);
 void uart_receive_package(uint8_t *data, uint8_t size);
 
 #endif /* LIB_UART_FR2355_H_ */

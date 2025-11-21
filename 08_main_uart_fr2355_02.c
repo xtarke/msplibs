@@ -6,11 +6,10 @@
  *      Instituto Federal de Santa Catarina
  *
  *
- *      - Exemplo de recepção e transmissão da USART
- *      - CPU é desligado até o recebimento dos dados.
- *      - Uma mensagem de ACK é enviado quando um pacote
- *      é recebido.
- *
+ *      - Exemplo de transmissão da USART
+ *      - Um inteiro é incrementado a cada segundo pela IRQ do WDT
+ *      - O valo inteiro é convertido para string e enviado pela UART
+  *
  *      - Clock da CPU é 24MHZ definido e uart_fr2355.h  devido a
  *      configuração do baudrate.
  *
@@ -30,16 +29,22 @@
 
 
 /* System includes */
-#include <lib/uart_fr2355.h>
 #include <msp430.h>
 #include <stdint.h>
+#include <string.h>
+#include <stdio.h>
 
 /* Project includes */
 #include "lib/bits.h"
+#include <lib/uart_fr2355.h>
 
 #ifndef __MSP430FR2355__
 #error "Clock system not supported/tested for this device"
 #endif
+
+
+/* Contador: escrito pela ISR do WDT e lido pela main */
+volatile int counter = 0;
 
 
 /**
@@ -81,12 +86,26 @@ void init_clock_system(void) {
     CSCTL4 = SELMS__DCOCLKDIV | SELA__REFOCLK;
 }
 
+void config_wd_as_timer(){
+    /* Configura Watch dog como temporizador:
+     *
+     * WDT_ADLY_1000 <= (WDTPW+WDTTMSEL+WDTCNTCL+WDTIS2+WDTSSEL0)
+     *
+     * WDTPW -> "Senha" para alterar confgiuração.
+     * WDTTMSEL -> Temporizador ao invés de reset.
+     * WDTSSEL -> Fonte de clock de ACLK
+     * WDTIS2 -> Período de 1000ms com ACLK = 32.768Hz
+     *
+     */
+    WDTCTL = WDT_ADLY_1000;
+    /* Ativa IRQ do Watchdog */
+    SFRIE1 |= WDTIE;
+}
+
 
 int main(){
-    const char message[] = "ACK";
-    const char message_bin_data[] = { 65, 63, 87, 87};
 
-    char my_data[8];
+    char my_buffer[64];
 
     /* Desliga Watchdog */
     WDTCTL = WDTPW + WDTHOLD;
@@ -96,6 +115,7 @@ int main(){
 
     /* Inicializa hardware */
     init_clock_system();
+    config_wd_as_timer();
     init_uart();
 
     /* Led de depuração */
@@ -104,18 +124,28 @@ int main(){
     __bis_SR_register(GIE);
 
     while (1){
-        /* Configura o recebimento de um pacote de 4 bytes */
-        uart_receive_package((uint8_t *)my_data, 4);
+        snprintf(my_buffer, sizeof(my_buffer), "%d\n\r", counter);
 
-        /* Desliga a CPU enquanto pacote não chega */
-        __bis_SR_register(CPUOFF | GIE);
+        /* Envia dados da aplicação, UART não acorda CPU no término do envio */
+        uart_send_package((uint8_t *)my_buffer, strlen(my_buffer), 0);
 
-        /* Envia resposta */
-        uart_send_package((uint8_t *)message, 4);
-
-        /* Pisca LED para sinalizar que dados chegaram */
+        /* Pisca LED para sinalizar que dados estão sendo enviados */
         CPL_BIT(P1OUT,BIT0);
 
         __bis_SR_register(CPUOFF | GIE);
     }
+}
+
+/* ISR do watchdog: executado toda a vez que o temporizador estoura */
+#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
+#pragma vector=WDT_VECTOR
+__interrupt void watchdog_timer(void)
+#elif defined(__GNUC__)
+void __attribute__ ((interrupt(WDT_VECTOR))) watchdog_timer (void)
+#else
+#error Compiler not supported!
+#endif
+{
+    counter++;
+    __bic_SR_register_on_exit(CPUOFF);
 }

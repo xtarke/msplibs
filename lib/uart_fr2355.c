@@ -36,6 +36,7 @@ struct uart_status_t {
     uint8_t *data_to_send;
     uint8_t send_size;
     uint8_t send_busy;
+    uint8_t wake_up;
 
     /* Estado de recepção */
     uint8_t *data_to_receive;
@@ -103,10 +104,11 @@ void init_uart(){
  *
  * @param  data: endereço inicial dos dados do pacote.
  *         size: tamanho do pacote.
+ *         wake_up: acorda a CPU qnd todos os size bytes são transmitidos.
  *
  * @retval none
  */
-void uart_send_package(uint8_t *data, uint8_t size){
+void uart_send_package(uint8_t *data, uint8_t size, int wake_up){
 
     /* Serializa a transmissão de vários pacotes */
     while (uart_status.send_busy != 0);
@@ -115,6 +117,7 @@ void uart_send_package(uint8_t *data, uint8_t size){
     uart_status.data_to_send = data;
     uart_status.send_size = size - 1;
     uart_status.send_busy = 1;
+    uart_status.wake_up = wake_up;
 
     /* Envia primeiro byte */
     UCA1TXBUF = data[0];
@@ -189,7 +192,8 @@ void __attribute__ ((interrupt(USCI_A1_VECTOR))) USCI_A1_ISR (void)
             uart_status.send_busy = 0;
             /* Limpa flag de final de transmissão pois não há
              * mais nada a enviar          */
-            __bic_SR_register_on_exit(CPUOFF);
+            if (uart_status.wake_up)
+                __bic_SR_register_on_exit(CPUOFF);
         }
         break;
 
