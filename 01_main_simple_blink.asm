@@ -14,6 +14,7 @@
 ;-------------------------------------------------------------------------------
 RESET       mov.w   #__STACK_END,SP         ; Inicializar stackpointer
 StopWDT     mov.w   #WDTPW|WDTHOLD,&WDTCTL  ; Desativar WDT
+			; bic.w   #1,&PM5CTL0			; Liga pinos de IO (se MSP430FR2355)
 			bis.b #001h, &P1DIR
 
 ; Constantes
