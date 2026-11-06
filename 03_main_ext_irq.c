@@ -57,19 +57,4 @@ void main(){
 }
 
 
-/* Port 4 ISR (interrupt service routine) */
-#if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-#pragma vector=PORT4_VECTOR
-__interrupt void Port_4(void)
-#elif defined(__GNUC__)
-void __attribute__ ((interrupt(PORT1_VECTOR))) Port_4 (void)
-#else
-#error Compiler not supported!
-#endif
-{
-    /* Liga/desliga LED quando detectado borda no botão */
-    P1OUT ^= LED;
 
-    /* Limpa sinal de IRQ do botão 0 */
-    P4IFG &= ~BUTTON_0;
-}

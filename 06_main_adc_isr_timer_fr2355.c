@@ -106,8 +106,8 @@ void timerB_init(){
 void init_adc(){
 
     /* Configura pinos P1.0 a P.2 como entrada do AD */
-    P1SEL0 |=  BIT0 + BIT1 + BIT2;
-    P1SEL1 |=  BIT0 + BIT1 + BIT2;
+    P1SEL0 |=  BIT0;
+    P1SEL1 |=  BIT0;
 
     /* 16ADCclks, ADC ON */
     ADCCTL0 |= ADCSHT_2 | ADCON;

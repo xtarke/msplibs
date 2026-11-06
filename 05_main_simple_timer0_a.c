@@ -78,7 +78,7 @@ void config_timerA_0(){
     /* Timer A0:
      *
      * TASSEL_2 -> Clock de SMCLK.
-     * MC_2 -> Contagem crescente.
+     * MC_2 -> Con\\\\\\\\\\\\\tagem crescente.
      * TAIE -> Habilitação de IRQ.
      * ID_3 -> Prescaler = /8
      */

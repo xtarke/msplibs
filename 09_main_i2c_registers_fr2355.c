@@ -37,12 +37,12 @@
 #define DEVICE_I2C_ADDR 0x68
 
 /**
-  * @brief  Configura sistema de clock para usar o Digitally Controlled Oscillator (DCO) em 24MHz
-  *         Essa configuração utiliza pinos para cristal externo.
-  * @param  none
-  *
-  * @retval none
-  */
+ * @brief  Configura sistema de clock para usar o Digitally Controlled Oscillator (DCO) em 24MHz
+ *         Essa configuração utiliza pinos para cristal externo.
+ * @param  none
+ *
+ * @retval none
+ */
 
 void init_clock_system(void) {
 
@@ -91,25 +91,29 @@ int main(void) {
 #endif
 
     init_clock_system();
-    init_i2c_master_mode(0);
+    init_i2c_master_mode(1);
 
     /* Debug LED */
     P1DIR |= BIT0;
     CLR_BIT(P1OUT,BIT0);
 
-    /* Configura RTC escrevendo 4 valores a partir do endereço 0 */
-    i2c_status = i2c_master_write_reg(DEVICE_I2C_ADDR, 0x00, rtc_tx_data, 4);
+    while(1) {
 
-    if (i2c_status == NACK_MODE)
-        SET_BIT(P1OUT, BIT0);
+        //    /* Configura RTC escrevendo 4 valores a partir do endereço 0 */
+        //    i2c_status = i2c_master_write_reg(DEVICE_I2C_ADDR, 0x00, rtc_tx_data, 4);
+        //
+        //    if (i2c_status == NACK_MODE)
+        //        SET_BIT(P1OUT, BIT0);
 
-    _delay_cycles(10000);
+        _delay_cycles(10000);
 
-    /* Faz a leitura do RTC: */
-    i2c_status = i2c_master_read_reg(DEVICE_I2C_ADDR, 0x00, 4, rtc_rx_data);
-    if (i2c_status == NACK_MODE)
-        SET_BIT(P1OUT, BIT0);
+        /* Faz a leitura do RTC: */
+        i2c_status = i2c_master_read_reg(DEVICE_I2C_ADDR, 0x00, 4, rtc_rx_data);
+        if (i2c_status == NACK_MODE)
+            SET_BIT(P1OUT, BIT0);
 
-    __bis_SR_register(LPM0_bits + GIE);
+        //__bis_SR_register(LPM0_bits + GIE);
+
+    }
     return 0;
 }
